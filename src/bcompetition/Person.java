@@ -1,4 +1,4 @@
-package fb;
+package bcompetition;
 
 public class Person {
 

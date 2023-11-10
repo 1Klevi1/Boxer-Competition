@@ -1,4 +1,4 @@
-package fb;
+package bcompetition;
 
 public enum Level {
     NOVICE("Novice"), STANDARD("Standard"), VETERAN("Veteran");
