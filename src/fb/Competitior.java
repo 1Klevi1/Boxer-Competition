@@ -31,6 +31,5 @@ public class Competitior {
                 "<CN: " + CompetitorId  + "(" + CompetitorDetails.getInitials() +")"+ " has overall score " + getOverallScore() + ">";
 
     }
-//    e.g. CN 100 (KJT) has overall score 5.
 
 }
