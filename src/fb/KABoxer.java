@@ -2,7 +2,7 @@ package fb;
 
 import java.util.ArrayList;
 
-public class Competitior {
+public class KABoxer {
 
     private int CompetitorId;
     private Person CompetitorDetails;
@@ -10,7 +10,7 @@ public class Competitior {
     private ArrayList<Integer> Scores;
     private int CompetitorCategory;
 
-    public Competitior(int competitorId, Person competitorDetails, Level competitorLvl, int competitorCategory) {
+    public KABoxer(int competitorId, Person competitorDetails, Level competitorLvl, int competitorCategory) {
         CompetitorId = competitorId;
         CompetitorDetails = competitorDetails;
         CompetitorLvl = competitorLvl;
