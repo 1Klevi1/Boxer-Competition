@@ -16,7 +16,21 @@ public class Competitior {
         CompetitorLvl = competitorLvl;
         CompetitorCategory = competitorCategory;
     }
+
     public double getOverallScore() { return 5; }
 
+    public String getFullDetails(){
+        return
+                "<Competitor number: " + CompetitorId  + " - Name: " + CompetitorDetails.getFullName() + "\n"
+                + CompetitorDetails.getName() + " is a " + CompetitorLvl  + " aged " + CompetitorDetails.getAge()
+                + " and has an overall score of " + getOverallScore() + ">";
+
+    }
+    public String getShortDetails(){
+        return
+                "<CN: " + CompetitorId  + "(" + CompetitorDetails.getInitials() +")"+ " has overall score " + getOverallScore() + ">";
+
+    }
+//    e.g. CN 100 (KJT) has overall score 5.
 
 }
