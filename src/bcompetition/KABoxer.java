@@ -26,7 +26,7 @@ public class KABoxer {
         return
                 "<Competitor number: " + CompetitorId  + " - Name: " + CompetitorDetails.getFullName() + "\n"
                 + CompetitorDetails.getName() + " is a " + CompetitorLvl  + " aged " + CompetitorDetails.getAge()
-                + " and has an overall score of " + getOverallScore() + ">";
+                +" and received these scores : " +getAllScores() +" and has an overall score of " + getOverallScore() + ">";
 
     }
     public String getShortDetails(){
@@ -62,6 +62,32 @@ public class KABoxer {
             case LIGHTWEIGHT -> ScoresLight;
         };
 
+    }
+    public String getAllScores(){
+        String s = "";
+        s+="\n##############\nScores in Heavy Category: {";
+        for(int value = 0; value < ScoresHeavy.length; value++){
+            s += ScoresHeavy[value];
+            if (value < ScoresHeavy.length - 1) {
+                s += ", ";
+            }
+        }
+        s+="}\nScores in Middle Category: {";
+        for(int value = 0; value < ScoresMiddle.length; value++){
+            s += ScoresMiddle[value];
+            if (value < ScoresMiddle.length - 1) {
+                s += ", ";
+            }
+        }
+        s+="}\nScores in Light Category: {";
+        for(int value = 0; value < ScoresLight.length; value++){
+            s += ScoresLight[value];
+            if (value < ScoresLight.length - 1) {
+                s += ", ";
+            }
+        }
+        s+="}\n##############\n";
+        return s;
     }
     public double calculateAvgScore(int[] score){
         int sum  = 0;

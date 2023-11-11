@@ -17,6 +17,8 @@ public class Main {
         s1.recordScores(p11,Category.LIGHTWEIGHT, new int[]{});
 
         System.out.println("getOverALLsCORE :  " + p11.getOverallScore());
+        System.out.println(p11.getFullDetails());
+        System.out.println(p11.getShortDetails());
 
     }
 
