@@ -1,5 +1,7 @@
 package bcompetition;
 
+import java.util.Objects;
+
 public class Person {
 
     private String Name;
@@ -41,13 +43,17 @@ public class Person {
         return Name;
     }
     public String getFullName() {
-        if(middleName == null){
+        if(Objects.equals(middleName, "")){
             return Name + " " + Surname;
 
         }else{
             return Name +" "+ middleName + " " + Surname;
 
         }
+    }
+
+    public String getGender() {
+        return gender;
     }
 
     public void setMiddleName(String middleName) {

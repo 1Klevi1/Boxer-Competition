@@ -24,15 +24,22 @@ public class KABoxer {
 
     public String getFullDetails(){
         return
-                "<Competitor number: " + CompetitorId  + " - Name: " + CompetitorDetails.getFullName() + "\n"
-                + CompetitorDetails.getName() + " is a " + CompetitorLvl  + " aged " + CompetitorDetails.getAge()
-                +" and received these scores : " +getAllScores() +" and has an overall score of " + getOverallScore() + ">";
+                "<Boxer Id: " + CompetitorId  + " - Name: " + CompetitorDetails.getFullName() + ".\n"
+                + CompetitorDetails.getName() + " has a " + CompetitorLvl
+                + " level, is aged " + CompetitorDetails.getAge() +". The Category is "+ getCompetitorCategory()+
+                " and the gender is "+ CompetitorDetails.getGender()
+                +".\nThe boxer received these scores : " +getAllScores()
+                +"and has an overall score of " + getOverallScore() + ">";
 
     }
     public String getShortDetails(){
         return
                 "<CN: " + CompetitorId  + "(" + CompetitorDetails.getInitials() +")"+ " has overall score " + getOverallScore() + ">";
 
+    }
+
+    public int getCompetitorId() {
+        return CompetitorId;
     }
 
     public void setScoresHeavy(int[] scoresHeavy) {
@@ -55,8 +62,8 @@ public class KABoxer {
         return CompetitorCategory;
     }
 
-    public int[] getScoreArray(Category competitorCategory){
-        return switch (competitorCategory) {
+    public int[] getScoreArray( ){
+        return switch (CompetitorCategory) {
             case HEAVYWEIGHT -> ScoresHeavy;
             case MIDDLEWEIGHT -> ScoresMiddle;
             case LIGHTWEIGHT -> ScoresLight;
