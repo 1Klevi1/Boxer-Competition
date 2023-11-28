@@ -2,13 +2,13 @@ package bcompetition;
 
 import com.sun.source.tree.ReturnTree;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class KABoxer {
     private int CompetitorId;
     private Person CompetitorDetails;
     private Level CompetitorLvl;
-
     private int[] ScoresHeavy = new int[6];
     private int[] ScoresMiddle = new int[6];
     private int[] ScoresLight = new int[6];
@@ -63,6 +63,13 @@ public class KABoxer {
         };
 
     }
+    public void setScoreArray(Category competitorCategory, int[] scores) {
+         switch (competitorCategory) {
+            case HEAVYWEIGHT -> ScoresHeavy = scores;
+            case MIDDLEWEIGHT -> ScoresMiddle = scores;
+            case LIGHTWEIGHT -> ScoresLight = scores;
+        }
+    }
     public String getAllScores(){
         String s = "";
         s+="\n##############\nScores in Heavy Category: {";
@@ -110,15 +117,15 @@ public class KABoxer {
         double meanMiddle = Double.NaN;
         double meanLight = Double.NaN;
 
-            if (ScoresHeavy.length != 0){
-                meanHeavy = calculateAvgScore(ScoresHeavy);
-            }
-            if (ScoresMiddle.length != 0) {
-                meanMiddle = calculateAvgScore(ScoresMiddle);
-            }
-            if (ScoresLight.length != 0) {
-                meanLight = calculateAvgScore(ScoresLight);
-            }
+        if (ScoresHeavy.length != 0){
+            meanHeavy = calculateAvgScore(ScoresHeavy);
+        }
+        if (ScoresMiddle.length != 0) {
+            meanMiddle = calculateAvgScore(ScoresMiddle);
+        }
+        if (ScoresLight.length != 0) {
+            meanLight = calculateAvgScore(ScoresLight);
+        }
 
 //        If you want to print means and want more details in the output
 //        System.out.println("meanHeavy : " + meanHeavy +"- meanMiddle : " + meanMiddle + "- meanLight : " + meanLight);
@@ -134,4 +141,14 @@ public class KABoxer {
 
     }
 
+    @Override
+    public String toString() {
+        return "\n<Boxer {" +
+                "\n - Id: " + CompetitorId +
+                "\n - Details { " + CompetitorDetails +
+                " - Level: " + CompetitorLvl +
+                "\n - All Scores: "+ getAllScores()+
+                " - Category: " + CompetitorCategory +
+                "} >"+"\n";
+    }
 }

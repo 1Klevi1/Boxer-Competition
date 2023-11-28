@@ -7,24 +7,27 @@ public class Person {
     private String Surname;
     private String dateOfBirth;
     private String Country;
-
     private int Age;
+    private String gender;
 
-    public Person(String name, String middleName, String surname, String dateOfBirth, int age, String Country) {
+
+    public Person(String name, String middleName, String surname, String dateOfBirth, int age, String Country, String gender) {
         Name = name;
         this.middleName = middleName;
         Surname = surname;
         this.dateOfBirth = dateOfBirth;
         this.Age = age;
         this.Country =  Country;
+        this.gender = gender;
     }
 
-    public Person(String name, String middleName, String surname, String country, int age) {
+    public Person(String name, String middleName, String surname, String country, int age, String gender) {
         Name = name;
         this.middleName = middleName;
         Surname = surname;
         Country = country;
         Age = age;
+        this.gender = gender;
     }
 
     public Person(String name, String surname, String country, int age) {
@@ -88,14 +91,13 @@ public class Person {
     }
     @Override
     public String toString() {
-        return "Person{" +
-                "Name='" + Name + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", Surname='" + Surname + '\'' +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", Country='" + Country + '\'' +
-                ", Age=" + Age +
-                '}';
+        return "<Name: " + Name  +
+                " - Middle Name: " + middleName +
+                " - Surname: " + Surname +
+                " - Gender: " + gender +
+                " - Country: " + Country +
+                " - Age: " + Age +
+                "> }"+"\n";
     }
 
 }
