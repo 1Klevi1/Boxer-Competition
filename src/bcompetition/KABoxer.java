@@ -22,6 +22,26 @@ public  class KABoxer {
         CompetitorCategory = competitorCategory;
     }
 
+    public Person getCompetitorDetails() {
+        return CompetitorDetails;
+    }
+
+    public Level getCompetitorLvl() {
+        return CompetitorLvl;
+    }
+
+    public int[] getScoresHeavy() {
+        return ScoresHeavy;
+    }
+
+    public int[] getScoresMiddle() {
+        return ScoresMiddle;
+    }
+
+    public int[] getScoresLight() {
+        return ScoresLight;
+    }
+
     public String getFullDetails(){
         return
                 "<Boxer Id: " + CompetitorId  + " - Name: " + CompetitorDetails.getFullName() + ".\n"
