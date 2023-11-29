@@ -28,6 +28,7 @@ public class Main {
 //        System.out.println(l.calcMax());
 //        System.out.println(l.calcMin());
         System.out.println(l.calcFrequency());
+        System.out.println(l.getCompetitor(112));
     }
 
 }
