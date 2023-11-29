@@ -5,7 +5,7 @@ import com.sun.source.tree.ReturnTree;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class KABoxer {
+public  class KABoxer {
     private int CompetitorId;
     private Person CompetitorDetails;
     private Level CompetitorLvl;
@@ -113,7 +113,7 @@ public class KABoxer {
     public double calculateWeightsMean(double mean, double weight){
         return mean * weight;
     }
-    public double getOverallScore() {
+    public  double getOverallScore() {
 
         double weightHeavy = 0.5;
         double weightMiddle = 0.3;

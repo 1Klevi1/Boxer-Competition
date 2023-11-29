@@ -14,6 +14,7 @@ public class CompetitorList {
     public String highestOverallScore(){
         HashMap<KABoxer,Double> boxerDoubleMap = new HashMap<KABoxer,Double>();
         double highestValue = 0;
+        String s = "";
         for(KABoxer boxer: allParticipants){
             double result = boxer.getOverallScore();
             boxerDoubleMap.put(boxer, result);
@@ -21,9 +22,11 @@ public class CompetitorList {
                 highestValue = result;
             }
         }
+        s+= "The participant with the highest overall score is:\n ";
         for(Map.Entry<KABoxer, Double> elem : boxerDoubleMap.entrySet()){
             if(elem.getValue() == highestValue){
-                return elem.getKey().getFullDetails();
+                s += "\n" + elem.getKey().getFullDetails();
+                return s;
             }
         }
         return null;
@@ -32,28 +35,14 @@ public class CompetitorList {
     public String boxerTable(){
         String s = "";
         for(KABoxer boxer: allParticipants){
-            s += boxer.getFullDetails()+"\n";
+            s += "\n"+boxer.getFullDetails()+"\n" +
+                 "\n - Total is: "+ calcTotals(boxer) +
+                 "\n - Maximum element in the Score array is: "+ calcMax(boxer)+
+                 "\n - Minimum element in the Score array is: "+calcMin(boxer) +
+                 "\n - Frequency of the elements inside the Score array is: " + calcFrequency(boxer) +
+                 "\n - The average is: " + calcAverages(boxer) + "\n";
         }
         return s;
-    }
-
-    public String calcTotals(){
-        int result = 0;
-        String s = "";
-        LinkedHashMap<KABoxer,Integer> mapBoxer = new LinkedHashMap<KABoxer,Integer>();
-        for(KABoxer boxer: allParticipants){
-            int[] tempArray = boxer.getScoreArray();
-            for(int value: tempArray){
-                result += value;
-            }
-            mapBoxer.put(boxer,result);
-            result = 0;
-        }
-        s+="Calculate the totals: \n";
-        for(Map.Entry<KABoxer, Integer> set : mapBoxer.entrySet()){
-                s+=set.getKey().getShortDetails() + " Totals: " + set.getValue()+"\n";
-        }
-       return s;
     }
     public String getCompetitor(int id){
         for(KABoxer boxer: allParticipants){
@@ -63,27 +52,23 @@ public class CompetitorList {
         }
         return null;
     }
-    public String calcAverages(){
+    public int calcTotals(KABoxer boxer){
+        int result = 0;
+        int[] tempArray = boxer.getScoreArray();
+        for(int value: tempArray){
+            result += value;
+        }
+        return result;
+    }
+    public double calcAverages(KABoxer boxer){
         int sum = 0;
-        double result ;
-        String s = "";
-        LinkedHashMap<KABoxer,Double> mapBoxer = new LinkedHashMap<>();
-        for(KABoxer boxer: allParticipants){
-            int[] tempArray = boxer.getScoreArray();
+        int[] tempArray = boxer.getScoreArray();
             for(int value: tempArray){
                 sum += value;
             }
-            result = (double) sum / tempArray.length;
-            mapBoxer.put(boxer,result);
-            sum = 0;
-        }
-        s+="Calculate the average: \n";
-        for(Map.Entry<KABoxer, Double> set : mapBoxer.entrySet()){
-            s+=set.getKey().getShortDetails() + " Average: " + set.getValue()+"\n";
-        }
-        return s;
+            return (double) sum / tempArray.length;
     }
-    public int getMaxValue(KABoxer boxer){
+    public int calcMax(KABoxer boxer){
         int max = 0;
         int[] tempArray = boxer.getScoreArray();
             for(int value: tempArray){
@@ -93,51 +78,19 @@ public class CompetitorList {
             }
             return max;
     }
-
-    public String calcMax(){
-        int max = 0;
-        String s = "";
-        LinkedHashMap<KABoxer,Integer> mapBoxer = new LinkedHashMap<>();
-        for(KABoxer boxer: allParticipants){
-            int[] tempArray = boxer.getScoreArray();
-            for(int value: tempArray){
-                if(value > max){
-                    max = value;
-                }
-            }
-            mapBoxer.put(boxer,max);
-            max = 0;
-        }
-        s+="Get the maximum from their individual score array: \n";
-        for(Map.Entry<KABoxer, Integer> set : mapBoxer.entrySet()){
-            s+=set.getKey().getShortDetails() + " Maximum Score: " + set.getValue()+"\n";
-        }
-        return s;
-    }
-    public String calcMin(){
-        String s = "";
-        LinkedHashMap<KABoxer,Integer> mapBoxer = new LinkedHashMap<>();
-        for(KABoxer boxer: allParticipants){
-            int[] tempArray = boxer.getScoreArray();
-            int min = getMaxValue(boxer);
+    public int calcMin(KABoxer boxer){
+        int[] tempArray = boxer.getScoreArray();
+            int min = calcMax(boxer);
             for(int value: tempArray){
                 if(value < min){
                     min = value;
                 }
             }
-            mapBoxer.put(boxer,min);
-        }
-        s+="Get the minimum from their individual score array: \n";
-        for(Map.Entry<KABoxer, Integer> set : mapBoxer.entrySet()){
-            s+=set.getKey().getShortDetails() + " Minimum Score: " + set.getValue()+"\n";
-        }
-        return s;
+            return min;
     }
-    public String calcFrequency(){
-        String s = "";
-
-        for(KABoxer boxer: allParticipants){
+    public String calcFrequency(KABoxer boxer){
             int[] tempArray = boxer.getScoreArray();
+            String s = "";
             LinkedHashMap<Integer, Integer> frequency = new LinkedHashMap<>();
             for(int value: tempArray){
                 if(frequency.containsKey(value)){
@@ -148,41 +101,25 @@ public class CompetitorList {
                     frequency.put(value,1);
                 }
             }
-            s += String.valueOf(boxer.getCompetitorId())+" "+frequency + "\n";
-        }
+            s += "\n{";
+            for(Map.Entry<Integer,Integer> entry : frequency.entrySet()){
+                s += "\n Element - " + entry.getKey() + " Frequency - " + entry.getValue();
+            }
+            s+= "\n}";
         return s;
-
     }
-    //    public String summaryStatistics(){
-//
-//        for(KABoxer boxer: allParticipants){
-//            tempArray = boxer.getScoreArray();
-//
-//        }
-//
-//    }
-//    public void writeToFile(String fileName){
-//
-//        try {
-//            FileWriter myWriter = new FileWriter(fileName);
-//            StringBuffer val = new StringBuffer ("Table of competitors: \n");
-//            val.append(boxerTable());
-//            val.append("\nHighest Overall Score: ");
-//            val.append(highestOverallScore());
-//            val.append("\nAverage age: ");
-//            val.append(fastAvgAge());
-//            for (Person p : people){
-//                val.append("\n"+ p.toString());
-//            }
-//            myWriter.write(val.toString());
-//            myWriter.close();
-//            System.out.println("Successfully wrote to the file.");
-//        } catch (IOException e) {
-//            System.out.println("An error occurred.");
-//            e.printStackTrace();
-//        }
-//
-//    }
+    public void writeToFile(String fileName){
+        try {
+            FileWriter myWriter = new FileWriter(fileName);
+            myWriter.write("Table of competitors: \n" + boxerTable()
+                            + "\n" + highestOverallScore());
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
     public void readAllParticipants(String fileName){
         try{
             FileReader filereader = new FileReader(fileName);
