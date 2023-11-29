@@ -1,5 +1,6 @@
 package bcompetition;
 
+import javax.print.DocFlavor;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -124,7 +125,27 @@ public class CompetitorList {
         }
         return s;
     }
-//    public String summaryStatistics(){
+    public String calcFrequency(){
+        String s = "";
+
+        for(KABoxer boxer: allParticipants){
+            int[] tempArray = boxer.getScoreArray();
+            LinkedHashMap<Integer, Integer> frequency = new LinkedHashMap<>();
+            for(int value: tempArray){
+                if(frequency.containsKey(value)){
+                    int tempValv = frequency.get(value);
+                    tempValv += 1;
+                    frequency.put(value, tempValv);
+                }else{
+                    frequency.put(value,1);
+                }
+            }
+            s += String.valueOf(boxer.getCompetitorId())+" "+frequency + "\n";
+        }
+        return s;
+
+    }
+    //    public String summaryStatistics(){
 //
 //        for(KABoxer boxer: allParticipants){
 //            tempArray = boxer.getScoreArray();

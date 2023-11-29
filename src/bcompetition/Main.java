@@ -23,10 +23,11 @@ public class Main {
         l.readAllParticipants("src/bcompetition/RunCompetitor.csv");
         System.out.println(l.boxerTable());
 //        System.out.println(l.highestOverallScore());
-        System.out.println(l.calcTotals());
-        System.out.println(l.calcAverages());
-        System.out.println(l.calcMax());
-        System.out.println(l.calcMin());
+//        System.out.println(l.calcTotals());
+//        System.out.println(l.calcAverages());
+//        System.out.println(l.calcMax());
+//        System.out.println(l.calcMin());
+        System.out.println(l.calcFrequency());
     }
 
 }
