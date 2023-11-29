@@ -107,26 +107,26 @@ public class CompetitorList {
             s+= "\n}";
         return s;
     }
-    public void writeToFile(String fileName){
+    public int writeToFile(String fileName){
         try {
             FileWriter myWriter = new FileWriter(fileName);
             myWriter.write("Table of competitors: \n" + boxerTable()
                             + "\n" + highestOverallScore());
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
+            return -1;
         }
+        return 1;
     }
-    public void readAllParticipants(String fileName){
-        try{
+    public int readAllParticipants(String fileName) {
+        try {
             FileReader filereader = new FileReader(fileName);
             BufferedReader reader = new BufferedReader(filereader);
 
 
             String line = reader.readLine();
-            while ((line != null)){
+            while ((line != null)) {
 
                 String[] elements = line.split(",");
                 int id = Integer.parseInt(elements[0]);
@@ -146,17 +146,34 @@ public class CompetitorList {
                 }
 
                 ArrayList<String> storingDetails = setDetailsForPerson(details);
-                Person person = new Person(storingDetails.get(0),storingDetails.get(1),storingDetails.get(2),country, age, gender);
-                KABoxer boxer = new KABoxer(id,person,Level.valueOf(level.toUpperCase()),Category.valueOf(category.toUpperCase()));
-                boxer.setScoreArray(Category.valueOf(category.toUpperCase()),scores);
+                Person person = new Person(storingDetails.get(0), storingDetails.get(1), storingDetails.get(2), country, age, gender);
+                KABoxer boxer;
+
+                if ("Novice".equals(level) || "Professional".equals(level)) {
+                    if (category != null) {
+                        if ("Novice".equals(level)) {
+                            boxer = new AmateurBoxer(id, person, Level.valueOf(level.toUpperCase()), Category.valueOf(category.toUpperCase()));
+                        } else {
+                            boxer = new ProfessionalBoxer(id, person, Level.valueOf(level.toUpperCase()), Category.valueOf(category.toUpperCase()));
+                        }
+                    } else {
+                        return -2;
+                    }
+
+                } else {
+                    return -1;
+                }
+
+                boxer.setScoreArray(Category.valueOf(category.toUpperCase()), scores);
                 allParticipants.add(boxer);
                 line = reader.readLine();
             }
             reader.close();
 
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        return 1;
     }
     public ArrayList<String> setDetailsForPerson(String value){
         ArrayList<String> detailsArray = new ArrayList<String>();

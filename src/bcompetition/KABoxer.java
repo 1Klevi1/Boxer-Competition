@@ -5,7 +5,7 @@ import com.sun.source.tree.ReturnTree;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public  class KABoxer {
+public abstract class KABoxer {
     private int CompetitorId;
     private Person CompetitorDetails;
     private Level CompetitorLvl;
@@ -133,40 +133,7 @@ public  class KABoxer {
     public double calculateWeightsMean(double mean, double weight){
         return mean * weight;
     }
-    public  double getOverallScore() {
-
-        double weightHeavy = 0.5;
-        double weightMiddle = 0.3;
-        double weightLight = 0.2;
-        double totalWeight = 0.5 + 0.2 + 0.3;
-
-        double meanHeavy = Double.NaN;
-        double meanMiddle = Double.NaN;
-        double meanLight = Double.NaN;
-
-        if (ScoresHeavy.length != 0){
-            meanHeavy = calculateAvgScore(ScoresHeavy);
-        }
-        if (ScoresMiddle.length != 0) {
-            meanMiddle = calculateAvgScore(ScoresMiddle);
-        }
-        if (ScoresLight.length != 0) {
-            meanLight = calculateAvgScore(ScoresLight);
-        }
-
-//        If you want to print means and want more details in the output
-//        System.out.println("meanHeavy : " + meanHeavy +"- meanMiddle : " + meanMiddle + "- meanLight : " + meanLight);
-
-        double calcCategoryHeavy = calculateWeightsMean(meanHeavy,weightHeavy);
-        double calcCategoryMiddle = calculateWeightsMean(meanMiddle,weightMiddle);
-        double calcCategoryLight = calculateWeightsMean(meanLight,weightLight);
-
-//        if u want to print the weights x mean
-//        System.out.println("calcCategoryHeavy : " + calcCategoryHeavy +"- calcCategoryMiddle : " + calcCategoryMiddle + "- calcCategoryLight : " + calcCategoryLight);
-
-        return (calcCategoryHeavy + calcCategoryMiddle + calcCategoryLight) / totalWeight;
-
-    }
+    public abstract double getOverallScore();
 
     @Override
     public String toString() {

@@ -1,7 +1,7 @@
 package bcompetition;
 
 public enum Level {
-    NOVICE("Novice"), STANDARD("Standard"), VETERAN("Veteran");
+    NOVICE("Novice"), PROFESSIONAL("Professional");
     private final String level;
 
 
