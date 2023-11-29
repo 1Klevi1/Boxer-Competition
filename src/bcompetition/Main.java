@@ -23,5 +23,4 @@ public class Main {
         l.readAllParticipants("src/bcompetition/RunCompetitor.csv");
         l.writeToFile("test");
     }
-
 }
