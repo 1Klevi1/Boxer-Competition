@@ -1,4 +1,6 @@
-package bcompetition;
+package bcompetition.Model;
+
+import bcompetition.Category;
 
 import java.util.Arrays;
 

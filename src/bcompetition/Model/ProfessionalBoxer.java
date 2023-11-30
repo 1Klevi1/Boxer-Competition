@@ -1,4 +1,7 @@
-package bcompetition;
+package bcompetition.Model;
+
+import bcompetition.Category;
+import bcompetition.Level;
 
 public class ProfessionalBoxer extends KABoxer {
     private int championshipsWon;

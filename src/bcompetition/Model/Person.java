@@ -1,4 +1,4 @@
-package bcompetition;
+package bcompetition.Model;
 
 import java.util.Objects;
 

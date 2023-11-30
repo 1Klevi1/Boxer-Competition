@@ -1,4 +1,6 @@
-package bcompetition;
+package bcompetition.Model;
+
+import bcompetition.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -146,7 +148,8 @@ public class CompetitorList {
                 }
 
                 ArrayList<String> storingDetails = setDetailsForPerson(details);
-                Person person = new Person(storingDetails.get(0), storingDetails.get(1), storingDetails.get(2), country, age, gender);
+                Person person = new Person(storingDetails.get(0), storingDetails.get(1),
+                        storingDetails.get(2), country, age, gender);
                 KABoxer boxer;
 
                 if ("Novice".equals(level) || "Professional".equals(level)) {

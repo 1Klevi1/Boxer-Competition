@@ -1,9 +1,7 @@
-package bcompetition;
+package bcompetition.Model;
 
-import com.sun.source.tree.ReturnTree;
-
-import java.util.Arrays;
-import java.util.Scanner;
+import bcompetition.Category;
+import bcompetition.Level;
 
 public abstract class KABoxer {
     private int CompetitorId;
