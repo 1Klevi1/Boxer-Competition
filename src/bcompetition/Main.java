@@ -21,8 +21,7 @@ public class Main {
 //        System.out.println("getOverALLsCORE :  " + p11.getOverallScore());
 //        System.out.println(p11.getFullDetails());
 //        System.out.println(p11.getShortDetails());
-        CompetitorList l = new CompetitorList();
-        l.readAllParticipants("src/bcompetition/RunCompetitor.csv");
+        CompetitorList l = new CompetitorList("src/bcompetition/RunCompetitor.csv");
         l.writeToFile("test");
     }
 }

@@ -9,8 +9,12 @@ import java.io.IOException;
 import java.util.*;
 
 public class CompetitorList {
+
+    String fileName;
     ArrayList<KABoxer> allParticipants = new ArrayList<KABoxer>();
-    public  CompetitorList(){
+    public  CompetitorList(String fileName){
+        this.fileName = fileName;
+        readAllParticipants(fileName);
     }
     public String highestOverallScore(){
         HashMap<KABoxer,Double> boxerDoubleMap = new HashMap<KABoxer,Double>();
