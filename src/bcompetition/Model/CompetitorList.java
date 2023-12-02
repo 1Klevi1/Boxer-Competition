@@ -36,7 +36,14 @@ public class CompetitorList {
         }
         return null;
     }
-
+    public String removeBoxer(int id){
+        for(KABoxer boxer: allParticipants){
+            if(boxer.getCompetitorId() == id){
+                allParticipants.remove(boxer);
+            }
+        }
+        return "Boxer removed successfully";
+    }
     public String boxerTable(){
         String s = "";
         for(KABoxer boxer: allParticipants){
