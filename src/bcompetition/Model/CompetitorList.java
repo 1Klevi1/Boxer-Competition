@@ -49,10 +49,18 @@ public class CompetitorList {
         }
         return s;
     }
-    public String getCompetitor(int id){
+    public String getCompetitorShortDetails(int id){
         for(KABoxer boxer: allParticipants){
             if(boxer.getCompetitorId() == id){
                 return boxer.getShortDetails();
+            }
+        }
+        return null;
+    }
+    public String getCompetitorFullDetails(int id){
+        for(KABoxer boxer: allParticipants){
+            if(boxer.getCompetitorId() == id){
+                return boxer.getFullDetails();
             }
         }
         return null;
