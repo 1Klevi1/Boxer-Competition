@@ -44,6 +44,19 @@ public class CompetitorList {
         }
         return "Boxer removed successfully";
     }
+    public String viewDetailsCategory(Category category){
+        ArrayList<KABoxer> boxerView = new ArrayList<>();
+        String s = "";
+        for(KABoxer boxer: allParticipants){
+            if(boxer.getCompetitorCategory() == category){
+                boxerView.add(boxer);
+            }
+        }
+        for(KABoxer boxer: boxerView){
+            s+=boxer+"\n";
+        }
+        return s;
+    }
     public String boxerTable(){
         String s = "";
         for(KABoxer boxer: allParticipants){
