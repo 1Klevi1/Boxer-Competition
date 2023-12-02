@@ -36,13 +36,16 @@ public class CompetitorList {
         }
         return null;
     }
-    public String removeBoxer(int id){
-        for(KABoxer boxer: allParticipants){
-            if(boxer.getCompetitorId() == id){
-                allParticipants.remove(boxer);
+    public String removeBoxer(int id) {
+        Iterator<KABoxer> iterator = allParticipants.iterator();
+        while (iterator.hasNext()) {
+            KABoxer boxer = iterator.next();
+            if (boxer.getCompetitorId() == id) {
+                iterator.remove();
+                return "Boxer removed successfully";
             }
         }
-        return "Boxer removed successfully";
+        return "Boxer not found"; // Indicate that the boxer with the given ID was not found
     }
     public String viewDetailsCategory(Category category){
         ArrayList<KABoxer> boxerView = new ArrayList<>();
