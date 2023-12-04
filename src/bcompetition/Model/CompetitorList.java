@@ -60,14 +60,16 @@ public class CompetitorList {
         }
         return s;
     }
-    public KABoxer alterBoxerScores(int id, int[] score){
+    public String alterBoxerScores(int id, int[] score){
         for(KABoxer boxer : allParticipants){
             if(boxer.getCompetitorId() == id){
                 boxer.setScoreArray(boxer.getCompetitorCategory(),score);
-                return boxer;
+                return boxer.getFullDetails();
+            }else{
+                return "Boxer id not found";
             }
         }
-        return null;
+        return "Boxer doesn't exist";
     }
     public String boxerTable(){
         String s = "";

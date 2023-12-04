@@ -132,7 +132,6 @@ public abstract class KABoxer {
         return mean * weight;
     }
     public abstract double getOverallScore();
-
     @Override
     public String toString() {
         return "\n<Boxer {" +
