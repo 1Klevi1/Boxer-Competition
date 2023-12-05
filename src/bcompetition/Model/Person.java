@@ -7,17 +7,16 @@ public class Person {
     private String Name;
     private String middleName;
     private String Surname;
-    private String dateOfBirth;
     private String Country;
     private int Age;
     private String gender;
 
 
-    public Person(String name, String middleName, String surname, String dateOfBirth, int age, String Country, String gender) {
+
+    public Person(String name, String middleName, String surname, int age, String Country, String gender) {
         Name = name;
         this.middleName = middleName;
         Surname = surname;
-        this.dateOfBirth = dateOfBirth;
         this.Age = age;
         this.Country =  Country;
         this.gender = gender;
@@ -37,6 +36,26 @@ public class Person {
         Surname = surname;
         Country = country;
         Age = age;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setSurname(String surname) {
+        Surname = surname;
+    }
+
+    public void setCountry(String country) {
+        Country = country;
+    }
+
+    public void setAge(int age) {
+        Age = age;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getName() {
@@ -60,10 +79,6 @@ public class Person {
         this.middleName = middleName;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public String getMiddleName() {
         return middleName;
     }
@@ -74,10 +89,6 @@ public class Person {
 
     public int getAge() {
         return Age;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
     }
 
     public String getCountry() {

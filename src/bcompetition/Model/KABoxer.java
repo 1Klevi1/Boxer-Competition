@@ -3,6 +3,8 @@ package bcompetition.Model;
 import bcompetition.Category;
 import bcompetition.Level;
 
+import java.util.Arrays;
+
 public abstract class KABoxer {
     private int CompetitorId;
     private Person CompetitorDetails;
@@ -10,7 +12,6 @@ public abstract class KABoxer {
     private int[] ScoresHeavy = new int[6];
     private int[] ScoresMiddle = new int[6];
     private int[] ScoresLight = new int[6];
-
     private Category CompetitorCategory;
 
     public KABoxer(int competitorId, Person competitorDetails, Level competitorLvl, Category competitorCategory) {
@@ -18,6 +19,28 @@ public abstract class KABoxer {
         CompetitorDetails = competitorDetails;
         CompetitorLvl = competitorLvl;
         CompetitorCategory = competitorCategory;
+    }
+    public void setBoxerName(String value){
+        CompetitorDetails.setName(value);
+    }
+    public void setBoxerMiddleName(String value){
+        CompetitorDetails.setMiddleName(value);
+    }
+    public void setBoxerSurname(String value){
+        CompetitorDetails.setSurname(value);
+    }
+    public void setBoxerCountry(String value){
+        CompetitorDetails.setCountry(value);
+    }
+    public void setBoxerAge(int value){
+        CompetitorDetails.setAge(value);
+    }
+    public void setBoxerGender(String value){
+        CompetitorDetails.setGender(value);
+    }
+
+    public void setCompetitorLvl(Level competitorLvl) {
+        CompetitorLvl = competitorLvl;
     }
 
     public Person getCompetitorDetails() {
@@ -60,17 +83,11 @@ public abstract class KABoxer {
         return CompetitorId;
     }
 
-    public void setScoresHeavy(int[] scoresHeavy) {
-        ScoresHeavy = scoresHeavy;
-    }
+    public void setScoresHeavy(int[] scoresHeavy) { ScoresHeavy = Arrays.copyOf(scoresHeavy, 6); }
 
-    public void setScoresMiddle(int[] scoresMiddle) {
-        ScoresMiddle = scoresMiddle;
-    }
+    public void setScoresMiddle(int[] scoresMiddle) { ScoresMiddle = Arrays.copyOf(scoresMiddle, 6); }
 
-    public void setScoresLight(int[] scoresLight) {
-        ScoresLight = scoresLight;
-    }
+    public void setScoresLight(int[] scoresLight) { ScoresLight = Arrays.copyOf(scoresLight, 6); }
 
     public void setCompetitorCategory(Category competitorCategory) {
         CompetitorCategory = competitorCategory;

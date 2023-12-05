@@ -2,6 +2,7 @@ package bcompetition.Model;
 
 import bcompetition.*;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -98,6 +99,84 @@ public class CompetitorList {
             }
         }
         return null;
+    }
+    public String editBoxerDetails(int id, String detail, String input){
+        String s = "";
+        for(KABoxer boxer: allParticipants){
+            if(boxer.getCompetitorId() == id){
+                switch(detail){
+                    case "Name": boxer.setBoxerName(input);
+                    break;
+                    case "Middle Name": boxer.setBoxerMiddleName(input);
+                        break;
+
+                    case "Surname": boxer.setBoxerSurname(input);
+                        break;
+
+                    case "Country": boxer.setBoxerCountry(input);
+                        break;
+
+                    case "Age":
+                        int result = Integer.parseInt(input);  // Convert string to integer
+                        boxer.setBoxerAge(result);
+                        break;
+
+                    case "Gender": boxer.setBoxerGender(input);
+                        break;
+
+                    case "Competitor Level":
+                        Level lvl = Level.valueOf(input);  // Convert string to integer
+                        boxer.setCompetitorLvl(lvl);
+                        break;
+
+                    case "Competitor Category":
+                        Category categ = Category.valueOf(input);  // Convert string to integer
+                        boxer.setCompetitorCategory(categ);
+                        break;
+
+                    case "Scores Heavy (comma-separated)":
+
+                        String[] scoreStrings = input.split(",");
+                        int[] boxerScores = new int[scoreStrings.length];
+                        for (int i = 0; i < scoreStrings.length; i++) {
+                            try {
+                                boxerScores[i] = Integer.parseInt(scoreStrings[i].trim());
+                            } catch (NumberFormatException j) {
+                                return "Invalid input. Please enter valid integers.";
+                            }}
+                        boxer.setScoresHeavy(boxerScores);
+                        break;
+
+                    case"Scores Middle (comma-separated)":
+
+                        String[] scoreStrings1 = input.split(",");
+                        int[] boxerScores1 = new int[scoreStrings1.length];
+                        for (int i = 0; i < scoreStrings1.length; i++) {
+                            try {
+                                boxerScores1[i] = Integer.parseInt(scoreStrings1[i].trim());
+                            } catch (NumberFormatException j) {
+                                return "Invalid input. Please enter valid integers.";
+                            }}
+                        boxer.setScoresMiddle(boxerScores1);
+                        break;
+
+                    case "Scores Light (comma-separated)":
+                        String[] scoreStrings2 = input.split(",");
+                        int[] boxerScores2 = new int[scoreStrings2.length];
+                        for (int i = 0; i < scoreStrings2.length; i++) {
+                            try {
+                                boxerScores2[i] = Integer.parseInt(scoreStrings2[i].trim());
+                            } catch (NumberFormatException j) {
+                                return "Invalid input. Please enter valid integers.";
+                            }}
+                        boxer.setScoresLight(boxerScores2);
+                        break;
+                }
+                s+=boxer;
+                return s;
+            }
+        }
+        return "Boxer doesn't exist";
     }
     public int calcTotals(KABoxer boxer){
         int result = 0;
