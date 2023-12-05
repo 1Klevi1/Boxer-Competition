@@ -61,6 +61,10 @@ public class CompetitorList {
         }
         return s;
     }
+    public ArrayList<KABoxer> getAllParticipants() {
+        return allParticipants;
+    }
+
     public String alterBoxerScores(int id, int[] score){
         for(KABoxer boxer : allParticipants){
             if(boxer.getCompetitorId() == id){
@@ -227,7 +231,7 @@ public class CompetitorList {
             }
             s += "\n{";
             for(Map.Entry<Integer,Integer> entry : frequency.entrySet()){
-                s += "\n Element - " + entry.getKey() + " Frequency - " + entry.getValue();
+                s += "\n Elm - " + entry.getKey() + " Freq - " + entry.getValue()+"  ";
             }
             s+= "\n}";
         return s;

@@ -1,9 +1,12 @@
 package bcompetition.View;
 
+import bcompetition.Model.KABoxer;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class UserDetails extends JPanel {
 
@@ -29,16 +32,18 @@ public class UserDetails extends JPanel {
         toolBar.add(backButton);
         toolBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, toolBar.getMinimumSize().height));
         add(userTableScroll);
-
     }
 
     // gets users from database and loads to table
-    public void getUsers(Object[] objects) {
+    public void getUsers(ArrayList<KABoxer> participants) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) userTable.getModel();
         defaultTableModel.setColumnIdentifiers(userTableColumn);
+        System.out.println("getUsers");
+
         int i = 0;
-        while(i < objects.length) {
-            String row = objects[i].toString().trim();
+        while(i < participants.size()) {
+            String row = participants.get(i).toString().trim();
+            System.out.println(row);
             String[] rows = row.split(",");
             defaultTableModel.addRow(rows);
             i++;

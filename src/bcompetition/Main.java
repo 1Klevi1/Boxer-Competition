@@ -22,6 +22,7 @@ public class Main {
 //        System.out.println(p11.getFullDetails());
 //        System.out.println(p11.getShortDetails());
         CompetitorList l = new CompetitorList("src/bcompetition/RunCompetitor.csv");
-        l.writeToFile("test");
+//        l.writeToFile("test");
+        l.getAllParticipants();
     }
 }

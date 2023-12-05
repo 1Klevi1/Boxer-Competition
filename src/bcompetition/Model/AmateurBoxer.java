@@ -58,7 +58,18 @@ public class AmateurBoxer extends KABoxer {
         return (calcCategoryHeavy + calcCategoryMiddle + calcCategoryLight) / totalWeight;
 
     }
+    public String getFullDetails(){
+        return
+                "<Amateur Boxer { Id: " + getCompetitorId()  + " - Name: "
+                        + getCompetitorDetails().getFullName() + ".\n"
+                        + getCompetitorDetails().getName() + " has a " + getCompetitorLvl()
+                        + " level, is aged " + getCompetitorDetails().getAge()
+                        +". The Category is "+ getCompetitorCategory()
+                        + " and the gender is "+ getCompetitorDetails().getGender()
+                        +".\nThe boxer received these scores : " +getAllScores()
+                        +"and has an overall score of " + getOverallScore() + "}>";
 
+    }
     @Override
     public String toString() {
         return "\n<Amateur Boxer {" +
