@@ -78,7 +78,9 @@ public class CompetitorList {
                  "\n - Maximum element in the Score array is: "+ calcMax(boxer)+
                  "\n - Minimum element in the Score array is: "+calcMin(boxer) +
                  "\n - Frequency of the elements inside the Score array is: " + calcFrequency(boxer) +
-                 "\n - The average is: " + calcAverages(boxer) + "\n";
+                 "\n - The average is: " + calcAverages(boxer) +
+                 "\n---------------------------------------------------------------\n";
+
         }
         return s;
     }
