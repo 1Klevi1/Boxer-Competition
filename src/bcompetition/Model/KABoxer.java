@@ -107,9 +107,9 @@ public abstract class KABoxer {
     }
     public void setScoreArray(Category competitorCategory, int[] scores) {
          switch (competitorCategory) {
-            case HEAVYWEIGHT -> ScoresHeavy = scores;
-            case MIDDLEWEIGHT -> ScoresMiddle = scores;
-            case LIGHTWEIGHT -> ScoresLight = scores;
+            case HEAVYWEIGHT -> ScoresHeavy = Arrays.copyOf(scores, 6);
+            case MIDDLEWEIGHT -> ScoresMiddle = Arrays.copyOf(scores, 6);
+            case LIGHTWEIGHT -> ScoresLight = Arrays.copyOf(scores, 6);
         }
     }
     public String getAllScores(){

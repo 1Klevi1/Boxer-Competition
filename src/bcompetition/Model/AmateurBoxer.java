@@ -68,6 +68,7 @@ public class AmateurBoxer extends KABoxer {
                 "\n - All Scores: "+ getAllScores()+
                 " - Category: " + getCompetitorCategory() +
                 "\n - Amateur rank: "+ getAmateurRank()+
+                "\n - Overall Score: "+ getOverallScore()+
                 "} >"+"\n";
     }
 }

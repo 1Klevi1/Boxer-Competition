@@ -66,8 +66,6 @@ public class CompetitorList {
             if(boxer.getCompetitorId() == id){
                 boxer.setScoreArray(boxer.getCompetitorCategory(),score);
                 return boxer.getFullDetails();
-            }else{
-                return "Boxer id not found";
             }
         }
         return "Boxer doesn't exist";
@@ -90,7 +88,7 @@ public class CompetitorList {
                 return boxer.getShortDetails();
             }
         }
-        return null;
+        return "Boxer doesn't exist";
     }
     public String getCompetitorFullDetails(int id){
         for(KABoxer boxer: allParticipants){
@@ -98,10 +96,9 @@ public class CompetitorList {
                 return boxer.getFullDetails();
             }
         }
-        return null;
+        return "Boxer doesn't exist";
     }
     public String editBoxerDetails(int id, String detail, String input){
-        String s = "";
         for(KABoxer boxer: allParticipants){
             if(boxer.getCompetitorId() == id){
                 switch(detail){
@@ -172,8 +169,7 @@ public class CompetitorList {
                         boxer.setScoresLight(boxerScores2);
                         break;
                 }
-                s+=boxer;
-                return s;
+                return boxer.getFullDetails();
             }
         }
         return "Boxer doesn't exist";

@@ -67,6 +67,7 @@ public String toString() {
             "\n - All Scores: "+ getAllScores()+
             " - Category: " + getCompetitorCategory() +
             "\n - Championships won: "+ getChampionshipsWon()+
+            "\n - Overall Score: "+ getOverallScore()+
             "} >"+"\n";
 }
 }
