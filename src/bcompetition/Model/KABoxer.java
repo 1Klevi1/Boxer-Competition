@@ -13,6 +13,13 @@ public abstract class KABoxer {
     private int[] ScoresMiddle = new int[6];
     private int[] ScoresLight = new int[6];
     private Category CompetitorCategory;
+    private double weightHeavy = 0.5;
+    private double weightMiddle = 0.3;
+    private double weightLight = 0.2;
+    private double totalWeight = 0.5 + 0.2 + 0.3;
+    private double meanHeavy = Double.NaN;
+    private double meanMiddle = Double.NaN;
+    private double meanLight = Double.NaN;
 
     public KABoxer(int competitorId, Person competitorDetails, Level competitorLvl, Category competitorCategory) {
         CompetitorId = competitorId;
@@ -20,6 +27,63 @@ public abstract class KABoxer {
         CompetitorLvl = competitorLvl;
         CompetitorCategory = competitorCategory;
     }
+
+    public double getWeightHeavy() {
+        return weightHeavy;
+    }
+
+    public void setWeightHeavy(double weightHeavy) {
+        this.weightHeavy = weightHeavy;
+    }
+
+    public double getWeightMiddle() {
+        return weightMiddle;
+    }
+
+    public void setWeightMiddle(double weightMiddle) {
+        this.weightMiddle = weightMiddle;
+    }
+
+    public double getWeightLight() {
+        return weightLight;
+    }
+
+    public void setWeightLight(double weightLight) {
+        this.weightLight = weightLight;
+    }
+
+    public double getTotalWeight() {
+        return totalWeight;
+    }
+
+    public void setTotalWeight(double totalWeight) {
+        this.totalWeight = totalWeight;
+    }
+
+    public double getMeanHeavy() {
+        return meanHeavy;
+    }
+
+    public void setMeanHeavy(double meanHeavy) {
+        this.meanHeavy = meanHeavy;
+    }
+
+    public double getMeanMiddle() {
+        return meanMiddle;
+    }
+
+    public void setMeanMiddle(double meanMiddle) {
+        this.meanMiddle = meanMiddle;
+    }
+
+    public double getMeanLight() {
+        return meanLight;
+    }
+
+    public void setMeanLight(double meanLight) {
+        this.meanLight = meanLight;
+    }
+
     public void setBoxerName(String value){
         CompetitorDetails.setName(value);
     }
