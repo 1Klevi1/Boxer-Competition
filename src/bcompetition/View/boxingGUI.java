@@ -210,20 +210,6 @@ public class boxingGUI {
         menubar.add(Box.createHorizontalStrut(10));
         menubar.setVisible(true);
 
-        viewDetailsCategory.addActionListener(e ->{
-            Category[] categories = Category.values();
-            Category selectedCategory = (Category) JOptionPane.showInputDialog(
-                    frame,
-                    "Select Category:",
-                    "Category Selection",
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    categories,
-                    null
-            );
-            listing.setText(clist.viewDetailsCategory(selectedCategory));
-            listing.setEditable(false);
-        });
         // Arrange the components on the battlesMenu
         ViewMenu.add(fullDetails);
         ViewMenu.add(shortDetails);

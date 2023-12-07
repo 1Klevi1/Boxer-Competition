@@ -289,6 +289,21 @@ public class BoxingController {
             }
         });
 
+        view.getViewDetailsCategory().addActionListener(e ->{
+            Category[] categories = Category.values();
+            Category selectedCategory = (Category) JOptionPane.showInputDialog(
+                    view.getFrame(),
+                    "Select Category:",
+                    "Category Selection",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    categories,
+                    null
+            );
+            view.getListing().setText(model.viewDetailsCategory(selectedCategory));
+            view.getListing().setEditable(false);
+        });
+
     }
 
     public void start() {
