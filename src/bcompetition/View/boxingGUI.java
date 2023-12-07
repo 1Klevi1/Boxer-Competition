@@ -223,9 +223,6 @@ public class boxingGUI {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                // Your method to be executed before the frame is closed
-                System.out.println("Closing...");
-                // For testing, add a delay before writing to file
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException ex) {
@@ -233,6 +230,9 @@ public class boxingGUI {
                 }
                 // Your method to write to file
                 clist.writeToFile("report_data.txt");
+                JOptionPane.showMessageDialog(null,
+                        "The filename for the report is \"report_data.txt.\"", "Closing Window",
+                        JOptionPane.PLAIN_MESSAGE);
             }
         });
         frame.setMinimumSize(new Dimension(867, 600)); // Adjust as needed
