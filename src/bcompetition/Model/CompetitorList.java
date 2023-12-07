@@ -6,16 +6,33 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * The CompetitorList class represents a list of competitors in a competition.
+ * It provides various methods for managing and analyzing the competitor data.
+ *
+ * @author Klevi
+ * @version 07/12/2023
+ */
 public class CompetitorList {
 
-    String fileName;
-    ArrayList<KABoxer> allParticipants = new ArrayList<>();
+    private String fileName;
+    private ArrayList<KABoxer> allParticipants = new ArrayList<>();
 
+    /**
+     * Constructs a CompetitorList object with the specified file name and reads competitor data from the file.
+     *
+     * @param fileName The name of the file containing competitor data.
+     */
     public CompetitorList(String fileName) {
         this.fileName = fileName;
         readAllParticipants(fileName);
     }
 
+    /**
+     * Finds and returns the participant with the highest overall score.
+     *
+     * @return A string representation of the participant with the highest overall score.
+     */
     public String highestOverallScore() {
         HashMap<KABoxer, Double> boxerDoubleMap = new HashMap<>();
         double highestValue = 0;
@@ -37,6 +54,12 @@ public class CompetitorList {
         return null;
     }
 
+    /**
+     * Removes a boxer with the specified ID from the list of participants.
+     *
+     * @param id The ID of the boxer to be removed.
+     * @return A message indicating the success or failure of the removal.
+     */
     public String removeBoxer(int id) {
         Iterator<KABoxer> iterator = allParticipants.iterator();
         while (iterator.hasNext()) {
@@ -49,6 +72,12 @@ public class CompetitorList {
         return null;
     }
 
+    /**
+     * Returns a string representation of participants in a specific category.
+     *
+     * @param category The category of participants to view.
+     * @return A string representation of participants in the specified category.
+     */
     public String viewDetailsCategory(Category category) {
         ArrayList<KABoxer> boxerView = new ArrayList<>();
         String s = "";
@@ -63,10 +92,22 @@ public class CompetitorList {
         return s;
     }
 
+    /**
+     * Returns the list of all participants in the competition.
+     *
+     * @return An ArrayList containing all participants.
+     */
     public ArrayList<KABoxer> getAllParticipants() {
         return allParticipants;
     }
 
+    /**
+     * Updates the scores of a boxer with the specified ID.
+     *
+     * @param id    The ID of the boxer.
+     * @param score An array of scores to update.
+     * @return A string representation of the updated boxer details.
+     */
     public String alterBoxerScores(int id, int[] score) {
         for (KABoxer boxer : allParticipants) {
             if (boxer.getCompetitorId() == id) {
@@ -77,6 +118,13 @@ public class CompetitorList {
         return "Boxer doesn't exist";
     }
 
+    /**
+     * Generates a formatted string representation of a table containing details for each KABoxer.
+     * The table includes information such as full details, total, maximum score, minimum score,
+     * frequency of score elements, and average score.
+     *
+     * @return A formatted string representing the boxer table.
+     */
     public String boxerTable() {
         String s = "";
         for (KABoxer boxer : allParticipants) {
@@ -92,6 +140,12 @@ public class CompetitorList {
         return s;
     }
 
+    /**
+     * Retrieves the short details of a boxer based on the provided competitor ID.
+     *
+     * @param id The competitor ID to search for.
+     * @return The short details of the boxer if found, or "Boxer doesn't exist" otherwise.
+     */
     public String getCompetitorShortDetails(int id) {
         for (KABoxer boxer : allParticipants) {
             if (boxer.getCompetitorId() == id) {
@@ -101,6 +155,12 @@ public class CompetitorList {
         return "Boxer doesn't exist";
     }
 
+    /**
+     * Checks if a boxer with the specified competitor ID exists.
+     *
+     * @param id The competitor ID to check.
+     * @return True if a boxer with the given ID exists, false otherwise.
+     */
     public boolean boxerExists(int id) {
         for (KABoxer boxer : allParticipants) {
             if (id == boxer.getCompetitorId()) {
@@ -110,6 +170,12 @@ public class CompetitorList {
         return false;
     }
 
+    /**
+     * Retrieves the full details of a boxer based on the provided competitor ID.
+     *
+     * @param id The competitor ID to search for.
+     * @return The full details of the boxer if found, or "Boxer doesn't exist" otherwise.
+     */
     public String getCompetitorFullDetails(int id) {
         for (KABoxer boxer : allParticipants) {
             if (boxer.getCompetitorId() == id) {
@@ -119,6 +185,14 @@ public class CompetitorList {
         return "Boxer doesn't exist";
     }
 
+    /**
+     * Edits details of a boxer identified by their competitor ID.
+     *
+     * @param id      The competitor ID of the boxer to be edited.
+     * @param detail  The detail to be edited (e.g., Name, Middle Name, Age).
+     * @param input   The new value to be set for the specified detail.
+     * @return        A string indicating the outcome of the edit operation or an error message.
+     */
     public String editBoxerDetails(int id, String detail, String input) {
         for (KABoxer boxer : allParticipants) {
             if (boxer.getCompetitorId() == id) {
@@ -218,6 +292,12 @@ public class CompetitorList {
         return "Boxer doesn't exist";
     }
 
+    /**
+     * Calculates the sum of scores for a given boxer.
+     *
+     * @param boxer The boxer for whom the scores are calculated.
+     * @return The total sum of scores.
+     */
     public int calcTotals(KABoxer boxer) {
         int result = 0;
         int[] tempArray = boxer.getScoreArray();
@@ -227,6 +307,12 @@ public class CompetitorList {
         return result;
     }
 
+    /**
+     * Calculates the average of scores for a given boxer.
+     *
+     * @param boxer The boxer for whom the average is calculated.
+     * @return The average of scores as a double.
+     */
     public double calcAverages(KABoxer boxer) {
         int sum = 0;
         int[] tempArray = boxer.getScoreArray();
@@ -236,6 +322,12 @@ public class CompetitorList {
         return (double) sum / tempArray.length;
     }
 
+    /**
+     * Finds the maximum score among a boxer's scores.
+     *
+     * @param boxer The boxer for whom the maximum score is found.
+     * @return The maximum score.
+     */
     public int calcMax(KABoxer boxer) {
         int max = 0;
         int[] tempArray = boxer.getScoreArray();
@@ -247,6 +339,12 @@ public class CompetitorList {
         return max;
     }
 
+    /**
+     * Finds the minimum score among a boxer's scores.
+     *
+     * @param boxer The boxer for whom the minimum score is found.
+     * @return The minimum score.
+     */
     public int calcMin(KABoxer boxer) {
         int[] tempArray = boxer.getScoreArray();
         int min = calcMax(boxer);
@@ -258,6 +356,12 @@ public class CompetitorList {
         return min;
     }
 
+    /**
+     * Calculates the frequency of each score in a boxer's array.
+     *
+     * @param boxer The boxer for whom the frequency is calculated.
+     * @return A formatted string representing the frequency of each score.
+     */
     public String calcFrequency(KABoxer boxer) {
         int[] tempArray = boxer.getScoreArray();
         String s = "";
@@ -279,7 +383,12 @@ public class CompetitorList {
         return s;
     }
 
-    public int writeToFile(String fileName) {
+    /**
+     * Writes the competitor data to a specified file.
+     *
+     * @param fileName The name of the file to write the data to.
+     */
+    public void writeToFile(String fileName) {
         try {
             FileWriter myWriter = new FileWriter(fileName);
             myWriter.write("Table of competitors: \n" + boxerTable()
@@ -287,11 +396,15 @@ public class CompetitorList {
             myWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
-            return -1;
         }
-        return 1;
     }
 
+    /**
+     * Reads competitor data from a file and populates the list of participants.
+     *
+     * @param fileName The name of the file to read data from.
+     * @return 1 if the operation is successful, -1 if the level is invalid, -2 if the category is missing.
+     */
     public int readAllParticipants(String fileName) {
         try {
             FileReader filereader = new FileReader(fileName);
@@ -350,6 +463,14 @@ public class CompetitorList {
         return 1;
     }
 
+    /**
+     * Parses the input string to extract details for a person, including first name,
+     * middle name, and last name.The input string should contain space-separated elements.
+     * If a middle name is not present, an empty string is assigned.
+     *
+     * @param value The input string containing details for a person.
+     * @return An ArrayList containing the parsed details: [firstName, middleName, lastName].
+     */
     public ArrayList<String> setDetailsForPerson(String value) {
         ArrayList<String> detailsArray = new ArrayList<String>();
         String Name, Surname, middleName;
@@ -374,6 +495,12 @@ public class CompetitorList {
         return detailsArray;
     }
 
+    /**
+     * Returns a string representation of the list of KABoxer objects in this instance.
+     * The string is generated by concatenating the string representations of each KABoxer in the list.
+     *
+     * @return A string representation of the list of KABoxer objects.
+     */
     @Override
     public String toString() {
         String s = "";

@@ -4,10 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Provides a GUI interface for the game.
+ * Provides a GUI interface.
  *
- * @author Klevi, Jack, Luke, Abdulla
- * @version 04/04/2023
+ * This class represents the graphical user interface (GUI) for the boxing game application.
+ * It includes components such as buttons, menu items, and text areas for user
+ * interaction and display of information.
+ *
+ * @author Klevi
+ * @version 07/12/2023
  */
 public class boxingGUI {
     private final JFrame frame = new JFrame("Game GUI");
@@ -109,7 +113,6 @@ public class boxingGUI {
         eastPanel.add(Box.createVerticalStrut(10)); // Add spacing if needed
         eastPanel.add(viewTable);
 
-
         // Set up the east panel
         eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
         eastPanel.setBackground(Color.WHITE);
@@ -194,6 +197,7 @@ public class boxingGUI {
 
         // Arrange the components on the frame
         frame.setJMenuBar(menubar);
+
         // Update the UI
         frame.validate();
         frame.repaint();

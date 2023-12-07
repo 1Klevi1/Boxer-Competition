@@ -1,3 +1,9 @@
+/**
+ * The {@code BoxingController} class serves as the controller in the MVC pattern for the boxing application.
+ * It handles the interaction between the model ({@code CompetitorList}) and the view ({@code boxingGUI}).
+ * @author Klevi
+ * @version 07/12/2023
+ */
 package bcompetition.Controller;
 
 import bcompetition.Model.Category;
@@ -13,11 +19,20 @@ import java.awt.event.WindowEvent;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * The {@code BoxingController} class manages the communication between the model and view of the boxing application.
+ */
 public class BoxingController {
 
     private CompetitorList model;
     private boxingGUI view;
 
+    /**
+     * Constructs a new {@code BoxingController} with the specified model and view.
+     *
+     * @param model The model representing the competitor list.
+     * @param view  The view representing the graphical user interface.
+     */
     public BoxingController(CompetitorList model, boxingGUI view) {
         this.model = model;
         this.view = view;
@@ -26,6 +41,10 @@ public class BoxingController {
         attachEventListenersMakeMenuBar();
     }
 
+    /**
+     * Initializes the view by setting the default close operation, attaching a window closing listener,
+     * and creating the frame and menu bar.
+     */
     private void initView() {
         view.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         windowClosingListener();
@@ -33,6 +52,10 @@ public class BoxingController {
         view.makeMenuBar();
     }
 
+    /**
+     * Attaches event listeners for the "View Table" button, "View State" button, and "Clear" button.
+     * This method populates and displays a JTable when the "View Table" button is clicked.
+     */
     private void attachEventListenersMakeFrame() {
         view.getViewTable().addActionListener(e -> {
             Object[][] data = new Object[model.getAllParticipants().size()][16];
@@ -107,6 +130,10 @@ public class BoxingController {
         view.getClearButton().addActionListener(e -> view.getListing().setText(""));
     }
 
+    /**
+     * Attaches event listeners for menu bar items such as "Full Details," "Short Details," "Remove Boxer," etc.
+     * This method handles user interactions with menu bar items.
+     */
     public void attachEventListenersMakeMenuBar() {
         view.getFullDetails().addActionListener(e -> {
             try {
@@ -125,6 +152,10 @@ public class BoxingController {
 
     }
 
+    /**
+     * Sets a window closing listener to handle tasks when the application window is closed.
+     * Tasks include writing data to a file and displaying a closing message.
+     */
     public void windowClosingListener() {
 
         view.getFrame().addWindowListener(new WindowAdapter() {
@@ -309,6 +340,9 @@ public class BoxingController {
 
     }
 
+    /**
+     * Starts the Swing application by making the frame visible.
+     */
     public void start() {
         SwingUtilities.invokeLater(() -> view.getFrame().setVisible(true));
     }

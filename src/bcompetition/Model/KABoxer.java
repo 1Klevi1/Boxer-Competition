@@ -2,6 +2,11 @@ package bcompetition.Model;
 
 import java.util.Arrays;
 
+/**
+ * Abstract class representing a KABoxer in a boxing competition.
+ * @author Klevi
+ * @version 07/12/2023
+ */
 public abstract class KABoxer {
     private int CompetitorId;
     private Person CompetitorDetails;
@@ -18,12 +23,22 @@ public abstract class KABoxer {
     private double meanMiddle = Double.NaN;
     private double meanLight = Double.NaN;
 
+    /**
+     * Constructs a KABoxer with the specified attributes.
+     *
+     * @param competitorId      The competitor's ID.
+     * @param competitorDetails Details of the competitor (name, country, age, gender, etc.).
+     * @param competitorLvl     The competitor's level.
+     * @param competitorCategory The competitor's category (Heavyweight, Middleweight, or Lightweight).
+     */
     public KABoxer(int competitorId, Person competitorDetails, Level competitorLvl, Category competitorCategory) {
         CompetitorId = competitorId;
         CompetitorDetails = competitorDetails;
         CompetitorLvl = competitorLvl;
         CompetitorCategory = competitorCategory;
     }
+
+    // Getter and setter methods
 
     public double getWeightHeavy() {
         return weightHeavy;
@@ -141,23 +156,6 @@ public abstract class KABoxer {
         ScoresLight = Arrays.copyOf(scoresLight, 6);
     }
 
-    public String getFullDetails() {
-        return
-                "<Boxer Id: " + CompetitorId + " - Name: " + CompetitorDetails.getFullName() + ".\n"
-                        + CompetitorDetails.getName() + " has a " + CompetitorLvl
-                        + " level, is aged " + CompetitorDetails.getAge() + ". The Category is " + getCompetitorCategory() +
-                        " and the gender is " + CompetitorDetails.getGender()
-                        + ".\nThe boxer received these scores : " + getAllScores()
-                        + "and has an overall score of " + getOverallScore() + ">";
-
-    }
-
-    public String getShortDetails() {
-        return
-                "<CN: " + CompetitorId + "(" + CompetitorDetails.getInitials() + ")" + " has overall score " + getOverallScore() + ">";
-
-    }
-
     public int getCompetitorId() {
         return CompetitorId;
     }
@@ -170,6 +168,41 @@ public abstract class KABoxer {
         CompetitorCategory = competitorCategory;
     }
 
+    /**
+     * Retrieves the full details of the KABoxer, including ID, name,
+     * level, age, category, gender, scores, and overall score.
+     *
+     * @return A string containing the full details of the KABoxer.
+     */
+    public String getFullDetails() {
+        return
+                "<Boxer Id: " + CompetitorId + " - Name: " + CompetitorDetails.getFullName() + ".\n"
+                        + CompetitorDetails.getName() + " has a " + CompetitorLvl
+                        + " level, is aged " + CompetitorDetails.getAge() +
+                        ". The Category is " + getCompetitorCategory() +
+                        " and the gender is " + CompetitorDetails.getGender()
+                        + ".\nThe boxer received these scores : " + getAllScores()
+                        + "and has an overall score of " + getOverallScore() + ">";
+
+    }
+
+    /**
+     * Retrieves the short details of the KABoxer, including competitor number, initials, and overall score.
+     *
+     * @return A string containing the short details of the KABoxer.
+     */
+    public String getShortDetails() {
+        return
+                "<CN: " + CompetitorId + "(" + CompetitorDetails.getInitials() + ")"
+                        + " has overall score " + getOverallScore() + ">";
+
+    }
+
+    /**
+     * Retrieves the scores of the KABoxer based on the specified category.
+     *
+     * @return An array of scores for the specified category.
+     */
     public int[] getScoreArray() {
         return switch (CompetitorCategory) {
             case HEAVYWEIGHT -> ScoresHeavy;
@@ -179,6 +212,12 @@ public abstract class KABoxer {
 
     }
 
+    /**
+     * Sets the scores of the KABoxer based on the specified category.
+     *
+     * @param competitorCategory The competitor's category (Heavyweight, Middleweight, or Lightweight).
+     * @param scores             An array of scores for the specified category.
+     */
     public void setScoreArray(Category competitorCategory, int[] scores) {
         switch (competitorCategory) {
             case HEAVYWEIGHT -> ScoresHeavy = Arrays.copyOf(scores, 6);
@@ -187,6 +226,11 @@ public abstract class KABoxer {
         }
     }
 
+    /**
+     * Retrieves all scores of the KABoxer, including scores in Heavy, Middle, and Light categories.
+     *
+     * @return A string containing all scores of the KABoxer.
+     */
     public String getAllScores() {
         String s = "";
         s += "\n##############\nScores in Heavy Category: {";
@@ -226,8 +270,18 @@ public abstract class KABoxer {
         return mean * weight;
     }
 
+    /**
+     * Abstract method to calculate the overall score of the KABoxer.
+     *
+     * @return The overall score of the KABoxer.
+     */
     public abstract double getOverallScore();
 
+    /**
+     * Overrides the default toString() method to provide a string representation of the KABoxer.
+     *
+     * @return A string representation of the KABoxer.
+     */
     @Override
     public String toString() {
         return "\n<Boxer {" +

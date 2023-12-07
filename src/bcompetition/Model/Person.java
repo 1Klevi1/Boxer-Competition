@@ -2,6 +2,12 @@ package bcompetition.Model;
 
 import java.util.Objects;
 
+/**
+ * The `Person` class represents an individual with personal details such as name, middle name, surname,
+ * country, age, and gender.
+ * @author Klevi
+ * @version 07/12/2023
+ */
 public class Person {
 
     private String Name;
@@ -11,16 +17,16 @@ public class Person {
     private int Age;
     private String gender;
 
-
-    public Person(String name, String middleName, String surname, int age, String Country, String gender) {
-        Name = name;
-        this.middleName = middleName;
-        Surname = surname;
-        this.Age = age;
-        this.Country = Country;
-        this.gender = gender;
-    }
-
+    /**
+     * Constructs a `Person` object with specified details.
+     *
+     * @param name       The first name of the person.
+     * @param middleName The middle name of the person.
+     * @param surname    The surname of the person.
+     * @param country    The country of residence.
+     * @param age        The age of the person.
+     * @param gender     The gender of the person.
+     */
     public Person(String name, String middleName, String surname, String country, int age, String gender) {
         Name = name;
         this.middleName = middleName;
@@ -30,12 +36,7 @@ public class Person {
         this.gender = gender;
     }
 
-    public Person(String name, String surname, String country, int age) {
-        Name = name;
-        Surname = surname;
-        Country = country;
-        Age = age;
-    }
+    // Getter and setter methods
 
     public String getName() {
         return Name;
@@ -43,16 +44,6 @@ public class Person {
 
     public void setName(String name) {
         Name = name;
-    }
-
-    public String getFullName() {
-        if (Objects.equals(middleName, "")) {
-            return Name + " " + Surname;
-
-        } else {
-            return Name + " " + middleName + " " + Surname;
-
-        }
     }
 
     public String getGender() {
@@ -63,16 +54,8 @@ public class Person {
         this.gender = gender;
     }
 
-    public String getMiddleName() {
-        return middleName;
-    }
-
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
-    }
-
-    public String getSurname() {
-        return Surname;
     }
 
     public void setSurname(String surname) {
@@ -95,6 +78,27 @@ public class Person {
         Country = country;
     }
 
+    /**
+     * Gets the full name of the person.
+     *
+     * @return The full name.
+     */
+    public String getFullName() {
+        if (Objects.equals(middleName, "")) {
+            return Name + " " + Surname;
+
+        } else {
+            return Name + " " + middleName + " " + Surname;
+
+        }
+    }
+
+
+    /**
+     * Gets the initials of the person.
+     *
+     * @return The initials.
+     */
     public String getInitials() {
 
         String[] words = getFullName().split(" ");
@@ -108,6 +112,11 @@ public class Person {
         return s;
     }
 
+    /**
+     * Provides a string representation of the `Person` object.
+     *
+     * @return A string containing details of the person.
+     */
     @Override
     public String toString() {
         return "<Name: " + Name +
