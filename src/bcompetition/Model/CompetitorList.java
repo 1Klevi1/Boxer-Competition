@@ -1,5 +1,8 @@
-package bcompetition;
+package bcompetition.Model;
 
+import bcompetition.*;
+
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -7,8 +10,12 @@ import java.io.IOException;
 import java.util.*;
 
 public class CompetitorList {
+
+    String fileName;
     ArrayList<KABoxer> allParticipants = new ArrayList<KABoxer>();
-    public  CompetitorList(){
+    public  CompetitorList(String fileName){
+        this.fileName = fileName;
+        readAllParticipants(fileName);
     }
     public String highestOverallScore(){
         HashMap<KABoxer,Double> boxerDoubleMap = new HashMap<KABoxer,Double>();
@@ -30,7 +37,43 @@ public class CompetitorList {
         }
         return null;
     }
+    public String removeBoxer(int id) {
+        Iterator<KABoxer> iterator = allParticipants.iterator();
+        while (iterator.hasNext()) {
+            KABoxer boxer = iterator.next();
+            if (boxer.getCompetitorId() == id) {
+                iterator.remove();
+                return "Boxer removed successfully";
+            }
+        }
+        return null;
+    }
+    public String viewDetailsCategory(Category category){
+        ArrayList<KABoxer> boxerView = new ArrayList<>();
+        String s = "";
+        for(KABoxer boxer: allParticipants){
+            if(boxer.getCompetitorCategory() == category){
+                boxerView.add(boxer);
+            }
+        }
+        for(KABoxer boxer: boxerView){
+            s+=boxer+"\n";
+        }
+        return s;
+    }
+    public ArrayList<KABoxer> getAllParticipants() {
+        return allParticipants;
+    }
 
+    public String alterBoxerScores(int id, int[] score){
+        for(KABoxer boxer : allParticipants){
+            if(boxer.getCompetitorId() == id){
+                boxer.setScoreArray(boxer.getCompetitorCategory(),score);
+                return boxer.getFullDetails();
+            }
+        }
+        return "Boxer doesn't exist";
+    }
     public String boxerTable(){
         String s = "";
         for(KABoxer boxer: allParticipants){
@@ -39,17 +82,112 @@ public class CompetitorList {
                  "\n - Maximum element in the Score array is: "+ calcMax(boxer)+
                  "\n - Minimum element in the Score array is: "+calcMin(boxer) +
                  "\n - Frequency of the elements inside the Score array is: " + calcFrequency(boxer) +
-                 "\n - The average is: " + calcAverages(boxer) + "\n";
+                 "\n - The average is: " + calcAverages(boxer) +
+                 "\n---------------------------------------------------------------\n";
+
         }
         return s;
     }
-    public String getCompetitor(int id){
+    public String getCompetitorShortDetails(int id){
         for(KABoxer boxer: allParticipants){
             if(boxer.getCompetitorId() == id){
                 return boxer.getShortDetails();
             }
         }
-        return null;
+        return "Boxer doesn't exist";
+    }
+    public boolean boxerExists(int id){
+        for(KABoxer boxer: allParticipants){
+            if(id == boxer.getCompetitorId()){
+                return true;
+            }
+        }
+        return false;
+    }
+    public String getCompetitorFullDetails(int id){
+        for(KABoxer boxer: allParticipants){
+            if(boxer.getCompetitorId() == id){
+                return boxer.getFullDetails();
+            }
+        }
+        return "Boxer doesn't exist";
+    }
+    public String editBoxerDetails(int id, String detail, String input){
+        for(KABoxer boxer: allParticipants){
+            if(boxer.getCompetitorId() == id){
+                switch(detail){
+
+                    case "Name":
+                    boxer.setBoxerName(input);
+                    break;
+
+                    case "Middle Name": boxer.setBoxerMiddleName(input);
+                        break;
+
+                    case "Surname": boxer.setBoxerSurname(input);
+                        break;
+
+                    case "Country": boxer.setBoxerCountry(input);
+                        break;
+
+                    case "Age":
+                        int result = Integer.parseInt(input);  // Convert string to integer
+                        boxer.setBoxerAge(result);
+                        break;
+
+                    case "Gender": boxer.setBoxerGender(input);
+                        break;
+
+                    case "Competitor Level":
+                        Level lvl = Level.valueOf(input);  // Convert string to integer
+                        boxer.setCompetitorLvl(lvl);
+                        break;
+
+                    case "Competitor Category":
+                        Category categ = Category.valueOf(input);  // Convert string to integer
+                        boxer.setCompetitorCategory(categ);
+                        break;
+
+                    case "Scores Heavy (comma-separated)":
+                        String[] scoreStrings = input.split(",");
+                        int[] boxerScores = new int[scoreStrings.length];
+                        for (int i = 0; i < scoreStrings.length; i++) {
+                            try {
+                                boxerScores[i] = Integer.parseInt(scoreStrings[i].trim());
+                            } catch (NumberFormatException j) {
+                                return "Invalid input. Please enter valid integers.";
+                            }}
+                        boxer.setScoresHeavy(boxerScores);
+                        break;
+
+                    case"Scores Middle (comma-separated)":
+                        String[] scoreStrings1 = input.split(",");
+                        int[] boxerScores1 = new int[scoreStrings1.length];
+                        for (int i = 0; i < scoreStrings1.length; i++) {
+                            try {
+                                boxerScores1[i] = Integer.parseInt(scoreStrings1[i].trim());
+                            } catch (NumberFormatException j) {
+                                return "Invalid input. Please enter valid integers.";
+                            }}
+                        boxer.setScoresMiddle(boxerScores1);
+                        break;
+
+                    case "Scores Light (comma-separated)":
+                        String[] scoreStrings2 = input.split(",");
+                        int[] boxerScores2 = new int[scoreStrings2.length];
+                        for (int i = 0; i < scoreStrings2.length; i++) {
+                            try {
+                                boxerScores2[i] = Integer.parseInt(scoreStrings2[i].trim());
+                            } catch (NumberFormatException j) {
+                                return "Invalid input. Please enter valid integers.";
+                            }}
+                        boxer.setScoresLight(boxerScores2);
+                        break;
+                }
+                return boxer.getFullDetails();
+            }
+        }
+        return "Boxer doesn't exist";
     }
     public int calcTotals(KABoxer boxer){
         int result = 0;
@@ -102,7 +240,7 @@ public class CompetitorList {
             }
             s += "\n{";
             for(Map.Entry<Integer,Integer> entry : frequency.entrySet()){
-                s += "\n Element - " + entry.getKey() + " Frequency - " + entry.getValue();
+                s += "\n Elm - " + entry.getKey() + " Freq - " + entry.getValue()+"  ";
             }
             s+= "\n}";
         return s;
@@ -146,7 +284,8 @@ public class CompetitorList {
                 }
 
                 ArrayList<String> storingDetails = setDetailsForPerson(details);
-                Person person = new Person(storingDetails.get(0), storingDetails.get(1), storingDetails.get(2), country, age, gender);
+                Person person = new Person(storingDetails.get(0), storingDetails.get(1),
+                        storingDetails.get(2), country, age, gender);
                 KABoxer boxer;
 
                 if ("Novice".equals(level) || "Professional".equals(level)) {

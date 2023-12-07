@@ -1,5 +1,7 @@
 package bcompetition;
 
+import bcompetition.Model.CompetitorList;
+
 public class Main {
     public static void main(String[] args) {
 //        System.out.println("Hello world!");
@@ -19,8 +21,8 @@ public class Main {
 //        System.out.println("getOverALLsCORE :  " + p11.getOverallScore());
 //        System.out.println(p11.getFullDetails());
 //        System.out.println(p11.getShortDetails());
-        CompetitorList l = new CompetitorList();
-        l.readAllParticipants("src/bcompetition/RunCompetitor.csv");
-        l.writeToFile("test");
+        CompetitorList l = new CompetitorList("src/bcompetition/RunCompetitor.csv");
+//        l.writeToFile("test");
+        l.getAllParticipants();
     }
 }
