@@ -15,7 +15,7 @@ import java.util.Comparator;
 
 public class BoxingController {
 
-    private CompetitorList model = new CompetitorList("src/bcompetition/RunCompetitor.csv");
+    private CompetitorList model;
     private boxingGUI view;
 
     public BoxingController(CompetitorList model, boxingGUI view) {

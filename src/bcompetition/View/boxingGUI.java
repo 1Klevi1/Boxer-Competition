@@ -45,25 +45,11 @@ public class boxingGUI {
         return frame;
     }
 
-    public JPanel getEastPanel() {
-        return eastPanel;
-    }
-
-    public JPanel getOutputPanel() {
-        return outputPanel;
-    }
-
-    public JMenuBar getMenubar() {
-        return menubar;
-    }
 
     public JTextArea getListing() {
         return listing;
     }
 
-    public JMenu getViewMenu() {
-        return ViewMenu;
-    }
 
     public JButton getClearButton() {
         return clearButton;
@@ -97,9 +83,6 @@ public class boxingGUI {
         return viewDetailsCategory;
     }
 
-    public JScrollPane getScrollPane() {
-        return scrollPane;
-    }
 
     public JButton getViewTable() {
         return viewTable;
