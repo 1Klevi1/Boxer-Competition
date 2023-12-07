@@ -40,130 +40,258 @@ public abstract class KABoxer {
 
     // Getter and setter methods
 
+    /**
+     * Gets the weight for the heavy category.
+     * @return The weight for the heavy category.
+     */
     public double getWeightHeavy() {
         return weightHeavy;
     }
 
+    /**
+     * Sets the weight for the heavy category.
+     * @param weightHeavy The weight to set for the heavy category.
+     */
     public void setWeightHeavy(double weightHeavy) {
         this.weightHeavy = weightHeavy;
     }
 
+    /**
+     * Gets the weight for the middle category.
+     * @return The weight for the middle category.
+     */
     public double getWeightMiddle() {
         return weightMiddle;
     }
 
+    /**
+     * Sets the weight for the middle category.
+     * @param weightMiddle The weight to set for the middle category.
+     */
     public void setWeightMiddle(double weightMiddle) {
         this.weightMiddle = weightMiddle;
     }
 
+    /**
+     * Gets the weight for the light category.
+     * @return The weight for the light category.
+     */
     public double getWeightLight() {
         return weightLight;
     }
 
+    /**
+     * Sets the weight for the light category.
+     * @param weightLight The weight to set for the light category.
+     */
     public void setWeightLight(double weightLight) {
         this.weightLight = weightLight;
     }
 
+    /**
+     * Gets the total weight.
+     * @return The total weight.
+     */
     public double getTotalWeight() {
         return totalWeight;
     }
 
+    /**
+     * Sets the total weight.
+     * @param totalWeight The total weight to be set.
+     */
     public void setTotalWeight(double totalWeight) {
         this.totalWeight = totalWeight;
     }
 
+    /**
+     * Gets the mean weight for the heavy category.
+     * @return The mean weight for the heavy category.
+     */
     public double getMeanHeavy() {
         return meanHeavy;
     }
 
+    /**
+     * Sets the mean weight for the heavy category.
+     * @param meanHeavy The mean weight to set for the heavy category.
+     */
     public void setMeanHeavy(double meanHeavy) {
         this.meanHeavy = meanHeavy;
     }
 
+    /**
+     * Gets the mean weight for the middle category.
+     * @return The mean weight for the middle category.
+     */
     public double getMeanMiddle() {
         return meanMiddle;
     }
 
+    /**
+     * Sets the mean weight for the middle category.
+     * @param meanMiddle The mean weight to set for the middle category.
+     */
     public void setMeanMiddle(double meanMiddle) {
         this.meanMiddle = meanMiddle;
     }
 
+    /**
+     * Gets the mean weight for the light category.
+     * @return The mean weight for the light category.
+     */
     public double getMeanLight() {
         return meanLight;
     }
 
+    /**
+     * Sets the mean weight for the light category.
+     * @param meanLight The mean weight to set for the light category.
+     */
     public void setMeanLight(double meanLight) {
         this.meanLight = meanLight;
     }
 
+    /**
+     * Sets the name of the boxer.
+     * @param value The name to set.
+     */
     public void setBoxerName(String value) {
         CompetitorDetails.setName(value);
     }
 
+    /**
+     * Sets the middle name of the boxer.
+     * @param value The middle name to set.
+     */
     public void setBoxerMiddleName(String value) {
         CompetitorDetails.setMiddleName(value);
     }
 
+    /**
+     * Sets the surname of the boxer.
+     * @param value The surname to set.
+     */
     public void setBoxerSurname(String value) {
         CompetitorDetails.setSurname(value);
     }
 
+    /**
+     * Sets the country of the boxer.
+     * @param value The country to set.
+     */
     public void setBoxerCountry(String value) {
         CompetitorDetails.setCountry(value);
     }
 
+    /**
+     * Sets the age of the boxer.
+     * @param value The age to set.
+     */
     public void setBoxerAge(int value) {
         CompetitorDetails.setAge(value);
     }
 
+    /**
+     * Sets the gender of the boxer.
+     * @param value The gender to set.
+     */
     public void setBoxerGender(String value) {
         CompetitorDetails.setGender(value);
     }
 
+    /**
+     * Gets the details of the competitor.
+     * @return The details of the competitor.
+     */
     public Person getCompetitorDetails() {
         return CompetitorDetails;
     }
 
+    /**
+     * Gets the level of the competitor.
+     * @return The level of the competitor.
+     */
     public Level getCompetitorLvl() {
         return CompetitorLvl;
     }
 
+    /**
+     * Sets the level of the competitor.
+     * @param competitorLvl The level to set for the competitor.
+     */
     public void setCompetitorLvl(Level competitorLvl) {
         CompetitorLvl = competitorLvl;
     }
 
+    /**
+     * Gets the scores for the heavy category.
+     * @return The scores for the heavy category.
+     */
     public int[] getScoresHeavy() {
         return ScoresHeavy;
     }
 
+    /**
+     * Sets the scores for the heavy category.
+     * @param scoresHeavy The scores to set for the heavy category.
+     */
     public void setScoresHeavy(int[] scoresHeavy) {
         ScoresHeavy = Arrays.copyOf(scoresHeavy, 6);
     }
 
+    /**
+     * Gets the scores for the middle category.
+     * @return The scores for the middle category.
+     */
     public int[] getScoresMiddle() {
         return ScoresMiddle;
     }
 
+    /**
+     * Sets the scores for the middle category.
+     * @param scoresMiddle The scores to set for the middle category.
+     */
     public void setScoresMiddle(int[] scoresMiddle) {
         ScoresMiddle = Arrays.copyOf(scoresMiddle, 6);
     }
 
+    /**
+     * Gets the scores for the light category.
+     * @return The scores for the light category.
+     */
     public int[] getScoresLight() {
         return ScoresLight;
     }
 
+    /**
+     * Sets the scores for the light category.
+     * @param scoresLight The scores to set for the light category.
+     */
     public void setScoresLight(int[] scoresLight) {
         ScoresLight = Arrays.copyOf(scoresLight, 6);
     }
 
+    /**
+     * Gets the ID of the competitor.
+     * @return The ID of the competitor.
+     */
     public int getCompetitorId() {
         return CompetitorId;
     }
 
+    /**
+     * Gets the category of the competitor.
+     * @return The category of the competitor.
+     */
     public Category getCompetitorCategory() {
         return CompetitorCategory;
     }
 
+    /**
+     * Sets the category of the competitor.
+     * @param competitorCategory The category to set for the competitor.
+     */
     public void setCompetitorCategory(Category competitorCategory) {
         CompetitorCategory = competitorCategory;
     }

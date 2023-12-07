@@ -38,42 +38,92 @@ public class Person {
 
     // Getter and setter methods
 
+    /**
+     * Gets the name of the person.
+     *
+     * @return The name of the person.
+     */
     public String getName() {
         return Name;
     }
 
+    /**
+     * Sets the name of the person.
+     *
+     * @param name The new name to set.
+     */
     public void setName(String name) {
         Name = name;
     }
 
+    /**
+     * Gets the gender of the person.
+     *
+     * @return The gender of the person.
+     */
     public String getGender() {
         return gender;
     }
 
+    /**
+     * Sets the gender of the person.
+     *
+     * @param gender The new gender to set.
+     */
     public void setGender(String gender) {
         this.gender = gender;
     }
 
+    /**
+     * Sets the middle name of the person.
+     *
+     * @param middleName The new middle name to set.
+     */
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
 
+    /**
+     * Sets the surname of the person.
+     *
+     * @param surname The new surname to set.
+     */
     public void setSurname(String surname) {
         Surname = surname;
     }
 
+    /**
+     * Gets the age of the person.
+     *
+     * @return The age of the person.
+     */
     public int getAge() {
         return Age;
     }
 
+    /**
+     * Sets the age of the person.
+     *
+     * @param age The new age to set.
+     */
     public void setAge(int age) {
         Age = age;
     }
 
+    /**
+     * Gets the country of the person.
+     *
+     * @return The country of the person.
+     */
     public String getCountry() {
         return Country;
     }
 
+    /**
+     * Sets the country of the person.
+     *
+     * @param country The new country to set.
+     */
     public void setCountry(String country) {
         Country = country;
     }
@@ -92,7 +142,6 @@ public class Person {
 
         }
     }
-
 
     /**
      * Gets the initials of the person.

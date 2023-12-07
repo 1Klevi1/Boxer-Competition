@@ -1,7 +1,5 @@
 /**
  * The Manager class serves as the entry point for the boxing competition application.
- * It initializes the CompetitorList model, the boxingGUI view, and the BoxingController controller.
- * The main method is responsible for starting the application.
  * @author Klevi
  * @version 07/12/2023
  */
@@ -11,6 +9,10 @@ import bcompetition.Controller.BoxingController;
 import bcompetition.Model.CompetitorList;
 import bcompetition.View.boxingGUI;
 
+/**
+ * The Manager class initializes the CompetitorList model, the boxingGUI view, and the BoxingController controller.
+ * The main method is responsible for starting the application.
+ */
 public class Manager {
 
     /**
