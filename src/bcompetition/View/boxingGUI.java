@@ -335,6 +335,10 @@ public class boxingGUI {
                         categories,
                         null
                 );
+                if(String.valueOf(selectedCategory).equals("null")){
+                    JOptionPane.showMessageDialog(frame, "User canceled the input.");
+                    return;
+                }
                 listing.setText(clist.editBoxerDetails(boxerId, setDetail, String.valueOf(selectedCategory).toUpperCase()));
                 listing.setEditable(false);
             } else if(setDetail.equals("Competitor Level")){
@@ -348,11 +352,15 @@ public class boxingGUI {
                         lvl,
                         null
                 );
+                if(String.valueOf(selectedLevel).equals("null")){
+                    JOptionPane.showMessageDialog(frame, "User canceled the input.");
+                    return;
+                }
                 listing.setText(clist.editBoxerDetails(boxerId, setDetail, String.valueOf(selectedLevel).toUpperCase()));
                 listing.setEditable(false);
             } else{
                 String newValue = JOptionPane.showInputDialog("Enter new value for " + setDetail + ": ");
-                if(newValue == null){
+                if(newValue == null || newValue.equals("NULL")){
                     JOptionPane.showMessageDialog(frame, "User canceled the input.");
                     return;
                 }

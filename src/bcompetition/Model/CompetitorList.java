@@ -118,9 +118,6 @@ public class CompetitorList {
                 switch(detail){
 
                     case "Name":
-//                        try{
-//
-//                        }catch()
                     boxer.setBoxerName(input);
                     break;
 
