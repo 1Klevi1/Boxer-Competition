@@ -1,15 +1,15 @@
 package bcompetition.Model;
 
-public class AmateurBoxer extends KABoxer {
+public class NoviceBoxer extends KABoxer {
     private int amateurRank;
 
-    public AmateurBoxer(int competitorId, Person competitorDetails,
-                        Level competitorLvl, Category competitorCategory, int rank) {
+    public NoviceBoxer(int competitorId, Person competitorDetails,
+                       Level competitorLvl, Category competitorCategory, int rank) {
         super(competitorId, competitorDetails, competitorLvl, competitorCategory);
         amateurRank = rank;
     }
-    public AmateurBoxer(int competitorId, Person competitorDetails,
-                        Level competitorLvl, Category competitorCategory) {
+    public NoviceBoxer(int competitorId, Person competitorDetails,
+                       Level competitorLvl, Category competitorCategory) {
         super(competitorId, competitorDetails, competitorLvl, competitorCategory);
         amateurRank = 0;
     }
@@ -40,7 +40,7 @@ public class AmateurBoxer extends KABoxer {
     }
     public String getFullDetails(){
         return
-                "<Amateur Boxer { Id: " + getCompetitorId()  + " - Name: "
+                "<"+getCompetitorLvl()+" Boxer {"+" Id: " + getCompetitorId()  + " - Name: "
                         + getCompetitorDetails().getFullName() + ".\n"
                         + getCompetitorDetails().getName() + " has a " + getCompetitorLvl()
                         + " level, is aged " + getCompetitorDetails().getAge()
@@ -52,7 +52,7 @@ public class AmateurBoxer extends KABoxer {
     }
     @Override
     public String toString() {
-        return "\n<Amateur Boxer {" +
+        return "\n<"+getCompetitorLvl()+" Boxer {" +
                 "\n - Id: " + getCompetitorId() +
                 "\n - Details { " + getCompetitorDetails() +
                 " - Level: " + getCompetitorLvl() +
