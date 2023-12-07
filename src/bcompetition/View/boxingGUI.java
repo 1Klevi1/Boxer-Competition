@@ -273,7 +273,11 @@ public class boxingGUI {
                 String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
                 if (userInput != null) {
                     int boxerId = Integer.parseInt(userInput);
-                    JOptionPane.showMessageDialog(frame, clist.removeBoxer(boxerId));
+                    if(clist.boxerExists(boxerId)){
+                        JOptionPane.showMessageDialog(frame, clist.removeBoxer(boxerId));
+                    }else{
+                        JOptionPane.showMessageDialog(frame, "Boxer doesn't exist.");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(frame, "User canceled the input.");
                 }
@@ -283,7 +287,23 @@ public class boxingGUI {
         });
 
         editBoxerDetails.addActionListener(e ->{
-            int boxerId = Integer.parseInt(JOptionPane.showInputDialog("Enter boxer Id: "));
+            String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
+            int boxerId = -1;  // Initialize to a default value
+            if(userInput == null){
+                JOptionPane.showMessageDialog(frame, "User canceled the input.");
+                return;
+            }
+            try{
+                boxerId = Integer.parseInt(userInput);
+                if(!(clist.boxerExists(boxerId))) {
+                    JOptionPane.showMessageDialog(frame, "Boxer doesn't exist.");
+                    return;
+                }
+            }catch(NumberFormatException E){
+                JOptionPane.showMessageDialog(frame, "Wrong input provided.");
+                return;
+            }
+
             Object[] details = {
                     "Name", "Middle Name", "Surname", "Country",
                     "Age", "Gender", "Competitor Level", "Competitor Category","Scores Heavy (comma-separated)",
@@ -300,6 +320,10 @@ public class boxingGUI {
                     null
             );
             String setDetail = (String) settingDetail;
+            if(setDetail == null){
+                JOptionPane.showMessageDialog(frame, "User canceled the input.");
+                return;
+            }
             if(setDetail.equals("Competitor Category")){
                 Category[] categories = Category.values();
                 Category selectedCategory = (Category) JOptionPane.showInputDialog(
@@ -328,6 +352,10 @@ public class boxingGUI {
                 listing.setEditable(false);
             } else{
                 String newValue = JOptionPane.showInputDialog("Enter new value for " + setDetail + ": ");
+                if(newValue == null){
+                    JOptionPane.showMessageDialog(frame, "User canceled the input.");
+                    return;
+                }
                 listing.setText(clist.editBoxerDetails(boxerId, setDetail, newValue));
                 listing.setEditable(false);
             }
@@ -341,7 +369,15 @@ public class boxingGUI {
                     return;
                 }
                 int boxerId = Integer.parseInt(userInput);
+                if(!(clist.boxerExists(boxerId))){
+                    JOptionPane.showMessageDialog(frame, "Boxer doesn't exist.");
+                    return;
+                }
                 String boxerScore = JOptionPane.showInputDialog("Enter boxer score (comma-separated): ");
+                if(boxerScore == null){
+                    JOptionPane.showMessageDialog(frame, "User canceled the input.");
+                    return;
+                }
                 String[] scoreStrings = boxerScore.split(",");
                 int[] boxerScores = new int[scoreStrings.length];
                 for (int i = 0; i < scoreStrings.length; i++) {
@@ -358,7 +394,6 @@ public class boxingGUI {
             JOptionPane.showMessageDialog(frame, "Invalid ID provided.");
         }
         });
-//comment
 
         viewDetailsCategory.addActionListener(e ->{
             Category[] categories = Category.values();

@@ -46,7 +46,7 @@ public class CompetitorList {
                 return "Boxer removed successfully";
             }
         }
-        return "Boxer not found"; // Indicate that the boxer with the given ID was not found
+        return null;
     }
     public String viewDetailsCategory(Category category){
         ArrayList<KABoxer> boxerView = new ArrayList<>();
@@ -96,6 +96,14 @@ public class CompetitorList {
         }
         return "Boxer doesn't exist";
     }
+    public boolean boxerExists(int id){
+        for(KABoxer boxer: allParticipants){
+            if(id == boxer.getCompetitorId()){
+                return true;
+            }
+        }
+        return false;
+    }
     public String getCompetitorFullDetails(int id){
         for(KABoxer boxer: allParticipants){
             if(boxer.getCompetitorId() == id){
@@ -108,8 +116,14 @@ public class CompetitorList {
         for(KABoxer boxer: allParticipants){
             if(boxer.getCompetitorId() == id){
                 switch(detail){
-                    case "Name": boxer.setBoxerName(input);
+
+                    case "Name":
+//                        try{
+//
+//                        }catch()
+                    boxer.setBoxerName(input);
                     break;
+
                     case "Middle Name": boxer.setBoxerMiddleName(input);
                         break;
 
@@ -138,7 +152,6 @@ public class CompetitorList {
                         break;
 
                     case "Scores Heavy (comma-separated)":
-
                         String[] scoreStrings = input.split(",");
                         int[] boxerScores = new int[scoreStrings.length];
                         for (int i = 0; i < scoreStrings.length; i++) {
@@ -151,7 +164,6 @@ public class CompetitorList {
                         break;
 
                     case"Scores Middle (comma-separated)":
-
                         String[] scoreStrings1 = input.split(",");
                         int[] boxerScores1 = new int[scoreStrings1.length];
                         for (int i = 0; i < scoreStrings1.length; i++) {
