@@ -152,6 +152,25 @@ public class BoxingController {
             }
         });
 
+        view.getRemoveBoxer().addActionListener(e ->{
+            try {
+                String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
+                if (userInput != null) {
+                    int boxerId = Integer.parseInt(userInput);
+                    if(model.boxerExists(boxerId)){
+                        JOptionPane.showMessageDialog(view.getFrame(), model.removeBoxer(boxerId));
+                    }else{
+                        JOptionPane.showMessageDialog(view.getFrame(), "Boxer doesn't exist.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
+                }
+            }catch (NumberFormatException l){
+                JOptionPane.showMessageDialog(view.getFrame(), "Wrong input provided.");
+            }
+        });
+
+
     }
 
     public void start() {
