@@ -209,37 +209,6 @@ public class boxingGUI {
         menubar.add(ViewMenu);
         menubar.add(Box.createHorizontalStrut(10));
         menubar.setVisible(true);
-
-        fullDetails.addActionListener(e ->{
-           try {
-               String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
-               if (userInput != null) {
-                   int boxerId = Integer.parseInt(userInput);
-                   listing.setText(clist.getCompetitorFullDetails(boxerId));
-                   listing.setEditable(false);
-               } else {
-                   JOptionPane.showMessageDialog(frame, "User canceled the input.");
-               }
-           }catch (NumberFormatException l){
-               JOptionPane.showMessageDialog(frame, "Wrong input provided.");
-           }
-        });
-
-        shortDetails.addActionListener(e ->{
-            try {
-                String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
-                if (userInput != null) {
-                    int boxerId = Integer.parseInt(userInput);
-                    listing.setText(clist.getCompetitorShortDetails(boxerId));
-                    listing.setEditable(false);
-                } else {
-                    JOptionPane.showMessageDialog(frame, "User canceled the input.");
-                }
-            }catch (NumberFormatException l){
-                JOptionPane.showMessageDialog(frame, "Wrong input provided.");
-            }
-        });
-
         removeBoxer.addActionListener(e ->{
             try {
                 String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");

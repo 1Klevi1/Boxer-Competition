@@ -137,6 +137,20 @@ public class BoxingController {
             }
         });
 
+        view.getShortDetails().addActionListener(e ->{
+            try {
+                String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
+                if (userInput != null) {
+                    int boxerId = Integer.parseInt(userInput);
+                    view.getListing().setText(model.getCompetitorShortDetails(boxerId));
+                    view.getListing().setEditable(false);
+                } else {
+                    JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
+                }
+            }catch (NumberFormatException l){
+                JOptionPane.showMessageDialog(view.getFrame(), "Wrong input provided.");
+            }
+        });
 
     }
 
