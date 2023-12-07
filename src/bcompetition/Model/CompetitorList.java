@@ -113,15 +113,50 @@ public class CompetitorList {
         for(KABoxer boxer: allParticipants){
             if(boxer.getCompetitorId() == id){
                 switch (detail) {
-                    case "Name" -> boxer.setBoxerName(input);
-                    case "Middle Name" -> boxer.setBoxerMiddleName(input);
-                    case "Surname" -> boxer.setBoxerSurname(input);
-                    case "Country" -> boxer.setBoxerCountry(input);
-                    case "Age" -> {
-                        int result = Integer.parseInt(input);  // Convert string to integer
-                        boxer.setBoxerAge(result);
+                    case "Name" -> {
+                        if (input.matches("[a-zA-Z]+")) {
+                            boxer.setBoxerName(input);
+                        }else{
+                            return "Invalid input";
+                        }
+                        }
+                    case "Middle Name" -> {
+                        if (input.matches("[a-zA-Z]+")) {
+                            boxer.setBoxerMiddleName(input);
+                        }else{
+                            return "Invalid input";
+                        }
                     }
-                    case "Gender" -> boxer.setBoxerGender(input);
+                    case "Surname" -> {
+                        if (input.matches("[a-zA-Z]+")) {
+                            boxer.setBoxerSurname(input);
+                        }else{
+                            return "Invalid input";
+                        }
+                    }
+                    case "Country" -> {
+                        if (input.matches("[a-zA-Z]+")) {
+                            boxer.setBoxerCountry(input);
+                        }else{
+                            return "Invalid input";
+                        }
+                    }
+                    case "Age" -> {
+                        int result = -1;
+                        try{
+                            result = Integer.parseInt(input);
+                            boxer.setBoxerAge(result);
+                        }catch(NumberFormatException e){
+                            return "Invalid input";
+                        }
+                    }
+                    case "Gender" -> {
+                        if (input.matches("[a-zA-Z]+")) {
+                            boxer.setBoxerGender(input);
+                        }else{
+                            return "Invalid input";
+                        }
+                    }
                     case "Competitor Level" -> {
                         Level lvl = Level.valueOf(input);  // Convert string to integer
                         boxer.setCompetitorLvl(lvl);

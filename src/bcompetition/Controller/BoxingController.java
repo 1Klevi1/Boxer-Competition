@@ -305,7 +305,6 @@ public class BoxingController {
         });
 
     }
-
     public void start() {
         SwingUtilities.invokeLater(() -> view.getFrame().setVisible(true));
     }
