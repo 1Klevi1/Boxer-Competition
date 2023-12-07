@@ -7,6 +7,8 @@ import bcompetition.Model.KABoxer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -216,7 +218,23 @@ public class boxingGUI {
         frame.setPreferredSize(new Dimension(1000, 600)); // Adjust as needed
         frame.pack();
 
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Your method to be executed before the frame is closed
+                System.out.println("Closing...");
+                // For testing, add a delay before writing to file
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+                // Your method to write to file
+                clist.writeToFile("report_data.txt");
+            }
+        });
         frame.setMinimumSize(new Dimension(867, 600)); // Adjust as needed
         // Arrange the components on the frame and show the GUI
         frame.add(eastPanel, BorderLayout.EAST);
