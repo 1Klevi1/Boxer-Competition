@@ -1,7 +1,9 @@
 package bcompetition.Controller;
 
+import bcompetition.Model.Category;
 import bcompetition.Model.CompetitorList;
 import bcompetition.Model.KABoxer;
+import bcompetition.Model.Level;
 import bcompetition.View.boxingGUI;
 
 import javax.swing.*;
@@ -170,6 +172,88 @@ public class BoxingController {
             }
         });
 
+        view.getEditBoxerDetails().addActionListener(e ->{
+            String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
+            int boxerId = -1;  // Initialize to a default value
+            if(userInput == null){
+                JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
+                return;
+            }
+            try{
+                boxerId = Integer.parseInt(userInput);
+                if(!(model.boxerExists(boxerId))) {
+                    JOptionPane.showMessageDialog(view.getFrame(), "Boxer doesn't exist.");
+                    return;
+                }
+            }catch(NumberFormatException E){
+                JOptionPane.showMessageDialog(view.getFrame(), "Wrong input provided.");
+                return;
+            }
+
+            Object[] details = {
+                    "Name", "Middle Name", "Surname", "Country",
+                    "Age", "Gender", "Competitor Level", "Competitor Category","Scores Heavy (comma-separated)",
+                    "Scores Middle (comma-separated)", "Scores Light (comma-separated)"
+            };
+
+            Object settingDetail = JOptionPane.showInputDialog(
+                    view.getFrame(),
+                    "Select detail:",
+                    "Details Selection",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    details,
+                    null
+            );
+            String setDetail = (String) settingDetail;
+            if(setDetail == null){
+                JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
+                return;
+            }
+            if(setDetail.equals("Competitor Category")){
+                Category[] categories = Category.values();
+                Category selectedCategory = (Category) JOptionPane.showInputDialog(
+                        view.getFrame(),
+                        "Select Category:",
+                        "Category Selection",
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        categories,
+                        null
+                );
+                if(String.valueOf(selectedCategory).equals("null")){
+                    JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
+                    return;
+                }
+                view.getListing().setText(model.editBoxerDetails(boxerId, setDetail, String.valueOf(selectedCategory).toUpperCase()));
+                view.getListing().setEditable(false);
+            } else if(setDetail.equals("Competitor Level")){
+                Level[] lvl = Level.values();
+                Level selectedLevel = (Level) JOptionPane.showInputDialog(
+                        view.getFrame(),
+                        "Select Level:",
+                        "Level Selection",
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        lvl,
+                        null
+                );
+                if(String.valueOf(selectedLevel).equals("null")){
+                    JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
+                    return;
+                }
+                view.getListing().setText(model.editBoxerDetails(boxerId, setDetail, String.valueOf(selectedLevel).toUpperCase()));
+                view.getListing().setEditable(false);
+            } else{
+                String newValue = JOptionPane.showInputDialog("Enter new value for " + setDetail + ": ");
+                if(newValue == null || newValue.equals("NULL")){
+                    JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
+                    return;
+                }
+                view.getListing().setText(model.editBoxerDetails(boxerId, setDetail, newValue));
+                view.getListing().setEditable(false);
+            }
+        });
 
     }
 
