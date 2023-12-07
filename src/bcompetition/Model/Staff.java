@@ -15,12 +15,12 @@ public class Staff {
         return StaffDetails;
     }
 
-    public int getAccessLevel() {
-        return AccessLevel;
-    }
-
     public void setStaffDetails(Person staffDetails) {
         StaffDetails = staffDetails;
+    }
+
+    public int getAccessLevel() {
+        return AccessLevel;
     }
 
     public void setAccessLevel(int accessLevel) {
@@ -30,7 +30,8 @@ public class Staff {
     public void setCompetitorCategory(KABoxer temp, Category category) {
         temp.setCompetitorCategory(category);
     }
-    public void recordScores(KABoxer temp,Category category, int[] score) {
+
+    public void recordScores(KABoxer temp, Category category, int[] score) {
         int[] validScores = Arrays.copyOf(score, 6);
         switch (category) {
             case HEAVYWEIGHT -> temp.setScoresHeavy(validScores);

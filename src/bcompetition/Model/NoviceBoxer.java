@@ -8,11 +8,13 @@ public class NoviceBoxer extends KABoxer {
         super(competitorId, competitorDetails, competitorLvl, competitorCategory);
         amateurRank = rank;
     }
+
     public NoviceBoxer(int competitorId, Person competitorDetails,
                        Level competitorLvl, Category competitorCategory) {
         super(competitorId, competitorDetails, competitorLvl, competitorCategory);
         amateurRank = 0;
     }
+
     public int getAmateurRank() {
         return amateurRank;
     }
@@ -24,7 +26,7 @@ public class NoviceBoxer extends KABoxer {
     @Override
     public double getOverallScore() {
 
-        if (getScoresHeavy().length != 0){
+        if (getScoresHeavy().length != 0) {
             setMeanHeavy(calculateAvgScore(getScoresHeavy()));
         }
         if (getScoresMiddle().length != 0) {
@@ -33,33 +35,35 @@ public class NoviceBoxer extends KABoxer {
         if (getScoresLight().length != 0) {
             setMeanLight(calculateAvgScore(getScoresLight()));
         }
-        double calcCategoryHeavy = calculateWeightsMean(getMeanHeavy(),getWeightHeavy());
-        double calcCategoryMiddle = calculateWeightsMean(getMeanMiddle(),getWeightMiddle());
-        double calcCategoryLight = calculateWeightsMean(getMeanLight(),getWeightLight());
+        double calcCategoryHeavy = calculateWeightsMean(getMeanHeavy(), getWeightHeavy());
+        double calcCategoryMiddle = calculateWeightsMean(getMeanMiddle(), getWeightMiddle());
+        double calcCategoryLight = calculateWeightsMean(getMeanLight(), getWeightLight());
         return (calcCategoryHeavy + calcCategoryMiddle + calcCategoryLight) / getTotalWeight();
     }
-    public String getFullDetails(){
+
+    public String getFullDetails() {
         return
-                "<"+getCompetitorLvl()+" Boxer {"+" Id: " + getCompetitorId()  + " - Name: "
+                "<" + getCompetitorLvl() + " Boxer {" + " Id: " + getCompetitorId() + " - Name: "
                         + getCompetitorDetails().getFullName() + ".\n"
                         + getCompetitorDetails().getName() + " has a " + getCompetitorLvl()
                         + " level, is aged " + getCompetitorDetails().getAge()
-                        +". The Category is "+ getCompetitorCategory()
-                        + " and the gender is "+ getCompetitorDetails().getGender()
-                        +".\nThe boxer received these scores : " +getAllScores()
-                        +"and has an overall score of " + getOverallScore() + "}>";
+                        + ". The Category is " + getCompetitorCategory()
+                        + " and the gender is " + getCompetitorDetails().getGender()
+                        + ".\nThe boxer received these scores : " + getAllScores()
+                        + "and has an overall score of " + getOverallScore() + "}>";
 
     }
+
     @Override
     public String toString() {
-        return "\n<"+getCompetitorLvl()+" Boxer {" +
+        return "\n<" + getCompetitorLvl() + " Boxer {" +
                 "\n - Id: " + getCompetitorId() +
                 "\n - Details { " + getCompetitorDetails() +
                 " - Level: " + getCompetitorLvl() +
-                "\n - All Scores: "+ getAllScores()+
+                "\n - All Scores: " + getAllScores() +
                 " - Category: " + getCompetitorCategory() +
-                "\n - Amateur rank: "+ getAmateurRank()+
-                "\n - Overall Score: "+ getOverallScore()+
-                "} >"+"\n";
+                "\n - Amateur rank: " + getAmateurRank() +
+                "\n - Overall Score: " + getOverallScore() +
+                "} >" + "\n";
     }
 }

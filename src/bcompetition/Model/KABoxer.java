@@ -81,27 +81,28 @@ public abstract class KABoxer {
         this.meanLight = meanLight;
     }
 
-    public void setBoxerName(String value){
+    public void setBoxerName(String value) {
         CompetitorDetails.setName(value);
     }
-    public void setBoxerMiddleName(String value){
+
+    public void setBoxerMiddleName(String value) {
         CompetitorDetails.setMiddleName(value);
     }
-    public void setBoxerSurname(String value){
+
+    public void setBoxerSurname(String value) {
         CompetitorDetails.setSurname(value);
     }
-    public void setBoxerCountry(String value){
+
+    public void setBoxerCountry(String value) {
         CompetitorDetails.setCountry(value);
     }
-    public void setBoxerAge(int value){
+
+    public void setBoxerAge(int value) {
         CompetitorDetails.setAge(value);
     }
-    public void setBoxerGender(String value){
-        CompetitorDetails.setGender(value);
-    }
 
-    public void setCompetitorLvl(Level competitorLvl) {
-        CompetitorLvl = competitorLvl;
+    public void setBoxerGender(String value) {
+        CompetitorDetails.setGender(value);
     }
 
     public Person getCompetitorDetails() {
@@ -112,31 +113,48 @@ public abstract class KABoxer {
         return CompetitorLvl;
     }
 
+    public void setCompetitorLvl(Level competitorLvl) {
+        CompetitorLvl = competitorLvl;
+    }
+
     public int[] getScoresHeavy() {
         return ScoresHeavy;
+    }
+
+    public void setScoresHeavy(int[] scoresHeavy) {
+        ScoresHeavy = Arrays.copyOf(scoresHeavy, 6);
     }
 
     public int[] getScoresMiddle() {
         return ScoresMiddle;
     }
 
+    public void setScoresMiddle(int[] scoresMiddle) {
+        ScoresMiddle = Arrays.copyOf(scoresMiddle, 6);
+    }
+
     public int[] getScoresLight() {
         return ScoresLight;
     }
 
-    public String getFullDetails(){
+    public void setScoresLight(int[] scoresLight) {
+        ScoresLight = Arrays.copyOf(scoresLight, 6);
+    }
+
+    public String getFullDetails() {
         return
-                "<Boxer Id: " + CompetitorId  + " - Name: " + CompetitorDetails.getFullName() + ".\n"
-                + CompetitorDetails.getName() + " has a " + CompetitorLvl
-                + " level, is aged " + CompetitorDetails.getAge() +". The Category is "+ getCompetitorCategory()+
-                " and the gender is "+ CompetitorDetails.getGender()
-                +".\nThe boxer received these scores : " +getAllScores()
-                +"and has an overall score of " + getOverallScore() + ">";
+                "<Boxer Id: " + CompetitorId + " - Name: " + CompetitorDetails.getFullName() + ".\n"
+                        + CompetitorDetails.getName() + " has a " + CompetitorLvl
+                        + " level, is aged " + CompetitorDetails.getAge() + ". The Category is " + getCompetitorCategory() +
+                        " and the gender is " + CompetitorDetails.getGender()
+                        + ".\nThe boxer received these scores : " + getAllScores()
+                        + "and has an overall score of " + getOverallScore() + ">";
 
     }
-    public String getShortDetails(){
+
+    public String getShortDetails() {
         return
-                "<CN: " + CompetitorId  + "(" + CompetitorDetails.getInitials() +")"+ " has overall score " + getOverallScore() + ">";
+                "<CN: " + CompetitorId + "(" + CompetitorDetails.getInitials() + ")" + " has overall score " + getOverallScore() + ">";
 
     }
 
@@ -144,21 +162,15 @@ public abstract class KABoxer {
         return CompetitorId;
     }
 
-    public void setScoresHeavy(int[] scoresHeavy) { ScoresHeavy = Arrays.copyOf(scoresHeavy, 6); }
-
-    public void setScoresMiddle(int[] scoresMiddle) { ScoresMiddle = Arrays.copyOf(scoresMiddle, 6); }
-
-    public void setScoresLight(int[] scoresLight) { ScoresLight = Arrays.copyOf(scoresLight, 6); }
+    public Category getCompetitorCategory() {
+        return CompetitorCategory;
+    }
 
     public void setCompetitorCategory(Category competitorCategory) {
         CompetitorCategory = competitorCategory;
     }
 
-    public Category getCompetitorCategory() {
-        return CompetitorCategory;
-    }
-
-    public int[] getScoreArray( ){
+    public int[] getScoreArray() {
         return switch (CompetitorCategory) {
             case HEAVYWEIGHT -> ScoresHeavy;
             case MIDDLEWEIGHT -> ScoresMiddle;
@@ -166,58 +178,64 @@ public abstract class KABoxer {
         };
 
     }
+
     public void setScoreArray(Category competitorCategory, int[] scores) {
-         switch (competitorCategory) {
+        switch (competitorCategory) {
             case HEAVYWEIGHT -> ScoresHeavy = Arrays.copyOf(scores, 6);
             case MIDDLEWEIGHT -> ScoresMiddle = Arrays.copyOf(scores, 6);
             case LIGHTWEIGHT -> ScoresLight = Arrays.copyOf(scores, 6);
         }
     }
-    public String getAllScores(){
+
+    public String getAllScores() {
         String s = "";
-        s+="\n##############\nScores in Heavy Category: {";
-        for(int value = 0; value < ScoresHeavy.length; value++){
+        s += "\n##############\nScores in Heavy Category: {";
+        for (int value = 0; value < ScoresHeavy.length; value++) {
             s += ScoresHeavy[value];
             if (value < ScoresHeavy.length - 1) {
                 s += ", ";
             }
         }
-        s+="}\nScores in Middle Category: {";
-        for(int value = 0; value < ScoresMiddle.length; value++){
+        s += "}\nScores in Middle Category: {";
+        for (int value = 0; value < ScoresMiddle.length; value++) {
             s += ScoresMiddle[value];
             if (value < ScoresMiddle.length - 1) {
                 s += ", ";
             }
         }
-        s+="}\nScores in Light Category: {";
-        for(int value = 0; value < ScoresLight.length; value++){
+        s += "}\nScores in Light Category: {";
+        for (int value = 0; value < ScoresLight.length; value++) {
             s += ScoresLight[value];
             if (value < ScoresLight.length - 1) {
                 s += ", ";
             }
         }
-        s+="}\n##############\n";
+        s += "}\n##############\n";
         return s;
     }
-    public double calculateAvgScore(int[] score){
-        int sum  = 0;
-        for(int value : score){
+
+    public double calculateAvgScore(int[] score) {
+        int sum = 0;
+        for (int value : score) {
             sum += value;
         }
         return (double) sum / score.length;
     }
-    public double calculateWeightsMean(double mean, double weight){
+
+    public double calculateWeightsMean(double mean, double weight) {
         return mean * weight;
     }
+
     public abstract double getOverallScore();
+
     @Override
     public String toString() {
         return "\n<Boxer {" +
                 "\n - Id: " + CompetitorId +
                 "\n - Details { " + CompetitorDetails +
                 " - Level: " + CompetitorLvl +
-                "\n - All Scores: "+ getAllScores()+
+                "\n - All Scores: " + getAllScores() +
                 " - Category: " + CompetitorCategory +
-                "} >"+"\n";
+                "} >" + "\n";
     }
 }

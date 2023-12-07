@@ -25,40 +25,42 @@ public class BoxingController {
         attachEventListenersMakeFrame();
         attachEventListenersMakeMenuBar();
     }
+
     private void initView() {
         view.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         windowClosingListener();
         view.makeFrame();
         view.makeMenuBar();
     }
+
     private void attachEventListenersMakeFrame() {
         view.getViewTable().addActionListener(e -> {
-        Object[][] data = new Object[model.getAllParticipants().size()][16];
+            Object[][] data = new Object[model.getAllParticipants().size()][16];
 
-        for (int i = 0; i < model.getAllParticipants().size(); i++) {
-            KABoxer boxer = model.getAllParticipants().get(i);
-            data[i][0] = boxer.getCompetitorId();
-            data[i][1] = boxer.getCompetitorDetails().getFullName();
-            data[i][2] = Arrays.toString(boxer.getScoresHeavy());
-            data[i][3] = Arrays.toString(boxer.getScoresMiddle());
-            data[i][4] = Arrays.toString(boxer.getScoresLight());
-            data[i][5] = boxer.getCompetitorDetails().getCountry();
-            data[i][6] = boxer.getCompetitorDetails().getAge();
-            data[i][7] = boxer.getCompetitorDetails().getGender();
-            data[i][8] = boxer.getCompetitorLvl();
-            data[i][9] = boxer.getCompetitorCategory();
-            data[i][10] = model.calcTotals(boxer);
-            data[i][11] = model.calcMax(boxer);
-            data[i][12] = model.calcMin(boxer);
-            data[i][13] = model.calcFrequency(boxer);
-            data[i][14] = model.calcAverages(boxer);
-            data[i][15] = boxer.getOverallScore();
+            for (int i = 0; i < model.getAllParticipants().size(); i++) {
+                KABoxer boxer = model.getAllParticipants().get(i);
+                data[i][0] = boxer.getCompetitorId();
+                data[i][1] = boxer.getCompetitorDetails().getFullName();
+                data[i][2] = Arrays.toString(boxer.getScoresHeavy());
+                data[i][3] = Arrays.toString(boxer.getScoresMiddle());
+                data[i][4] = Arrays.toString(boxer.getScoresLight());
+                data[i][5] = boxer.getCompetitorDetails().getCountry();
+                data[i][6] = boxer.getCompetitorDetails().getAge();
+                data[i][7] = boxer.getCompetitorDetails().getGender();
+                data[i][8] = boxer.getCompetitorLvl();
+                data[i][9] = boxer.getCompetitorCategory();
+                data[i][10] = model.calcTotals(boxer);
+                data[i][11] = model.calcMax(boxer);
+                data[i][12] = model.calcMin(boxer);
+                data[i][13] = model.calcFrequency(boxer);
+                data[i][14] = model.calcAverages(boxer);
+                data[i][15] = boxer.getOverallScore();
             }
             // Column names
             String[] columnNames = {
-                    "Id", "Full Name","Heavy Score",
-                    "Middle Score","Light Score",
-                    "Country","Age","Gender",
+                    "Id", "Full Name", "Heavy Score",
+                    "Middle Score", "Light Score",
+                    "Country", "Age", "Gender",
                     "Level", "Category", "Total",
                     "Max score", "Min score", "Frequency",
                     "Average", "Overall Score"
@@ -105,8 +107,8 @@ public class BoxingController {
         view.getClearButton().addActionListener(e -> view.getListing().setText(""));
     }
 
-    public void attachEventListenersMakeMenuBar(){
-        view.getFullDetails().addActionListener(e ->{
+    public void attachEventListenersMakeMenuBar() {
+        view.getFullDetails().addActionListener(e -> {
             try {
                 String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
                 if (userInput != null) {
@@ -116,13 +118,14 @@ public class BoxingController {
                 } else {
                     JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
                 }
-            }catch (NumberFormatException l){
+            } catch (NumberFormatException l) {
                 JOptionPane.showMessageDialog(view.getFrame(), "Wrong input provided.");
             }
         });
 
     }
-    public void windowClosingListener(){
+
+    public void windowClosingListener() {
 
         view.getFrame().addWindowListener(new WindowAdapter() {
             @Override
@@ -139,7 +142,7 @@ public class BoxingController {
             }
         });
 
-        view.getShortDetails().addActionListener(e ->{
+        view.getShortDetails().addActionListener(e -> {
             try {
                 String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
                 if (userInput != null) {
@@ -149,50 +152,50 @@ public class BoxingController {
                 } else {
                     JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
                 }
-            }catch (NumberFormatException l){
+            } catch (NumberFormatException l) {
                 JOptionPane.showMessageDialog(view.getFrame(), "Wrong input provided.");
             }
         });
 
-        view.getRemoveBoxer().addActionListener(e ->{
+        view.getRemoveBoxer().addActionListener(e -> {
             try {
                 String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
                 if (userInput != null) {
                     int boxerId = Integer.parseInt(userInput);
-                    if(model.boxerExists(boxerId)){
+                    if (model.boxerExists(boxerId)) {
                         JOptionPane.showMessageDialog(view.getFrame(), model.removeBoxer(boxerId));
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(view.getFrame(), "Boxer doesn't exist.");
                     }
                 } else {
                     JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
                 }
-            }catch (NumberFormatException l){
+            } catch (NumberFormatException l) {
                 JOptionPane.showMessageDialog(view.getFrame(), "Wrong input provided.");
             }
         });
 
-        view.getEditBoxerDetails().addActionListener(e ->{
+        view.getEditBoxerDetails().addActionListener(e -> {
             String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
             int boxerId = -1;  // Initialize to a default value
-            if(userInput == null){
+            if (userInput == null) {
                 JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
                 return;
             }
-            try{
+            try {
                 boxerId = Integer.parseInt(userInput);
-                if(!(model.boxerExists(boxerId))) {
+                if (!(model.boxerExists(boxerId))) {
                     JOptionPane.showMessageDialog(view.getFrame(), "Boxer doesn't exist.");
                     return;
                 }
-            }catch(NumberFormatException E){
+            } catch (NumberFormatException E) {
                 JOptionPane.showMessageDialog(view.getFrame(), "Wrong input provided.");
                 return;
             }
 
             Object[] details = {
                     "Name", "Middle Name", "Surname", "Country",
-                    "Age", "Gender", "Competitor Level", "Competitor Category","Scores Heavy (comma-separated)",
+                    "Age", "Gender", "Competitor Level", "Competitor Category", "Scores Heavy (comma-separated)",
                     "Scores Middle (comma-separated)", "Scores Light (comma-separated)"
             };
 
@@ -206,11 +209,11 @@ public class BoxingController {
                     null
             );
             String setDetail = (String) settingDetail;
-            if(setDetail == null){
+            if (setDetail == null) {
                 JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
                 return;
             }
-            if(setDetail.equals("Competitor Category")){
+            if (setDetail.equals("Competitor Category")) {
                 Category[] categories = Category.values();
                 Category selectedCategory = (Category) JOptionPane.showInputDialog(
                         view.getFrame(),
@@ -221,13 +224,13 @@ public class BoxingController {
                         categories,
                         null
                 );
-                if(String.valueOf(selectedCategory).equals("null")){
+                if (String.valueOf(selectedCategory).equals("null")) {
                     JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
                     return;
                 }
                 view.getListing().setText(model.editBoxerDetails(boxerId, setDetail, String.valueOf(selectedCategory).toUpperCase()));
                 view.getListing().setEditable(false);
-            } else if(setDetail.equals("Competitor Level")){
+            } else if (setDetail.equals("Competitor Level")) {
                 Level[] lvl = Level.values();
                 Level selectedLevel = (Level) JOptionPane.showInputDialog(
                         view.getFrame(),
@@ -238,15 +241,15 @@ public class BoxingController {
                         lvl,
                         null
                 );
-                if(String.valueOf(selectedLevel).equals("null")){
+                if (String.valueOf(selectedLevel).equals("null")) {
                     JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
                     return;
                 }
                 view.getListing().setText(model.editBoxerDetails(boxerId, setDetail, String.valueOf(selectedLevel).toUpperCase()));
                 view.getListing().setEditable(false);
-            } else{
+            } else {
                 String newValue = JOptionPane.showInputDialog("Enter new value for " + setDetail + ": ");
-                if(newValue == null || newValue.equals("NULL")){
+                if (newValue == null || newValue.equals("NULL")) {
                     JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
                     return;
                 }
@@ -255,20 +258,20 @@ public class BoxingController {
             }
         });
 
-        view.getEditBoxerScore().addActionListener(e ->{
-            try{
+        view.getEditBoxerScore().addActionListener(e -> {
+            try {
                 String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
-                if(userInput == null){
+                if (userInput == null) {
                     JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
                     return;
                 }
                 int boxerId = Integer.parseInt(userInput);
-                if(!(model.boxerExists(boxerId))){
+                if (!(model.boxerExists(boxerId))) {
                     JOptionPane.showMessageDialog(view.getFrame(), "Boxer doesn't exist.");
                     return;
                 }
                 String boxerScore = JOptionPane.showInputDialog("Enter boxer score (comma-separated): ");
-                if(boxerScore == null){
+                if (boxerScore == null) {
                     JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
                     return;
                 }
@@ -284,12 +287,12 @@ public class BoxingController {
                 }
                 JOptionPane.showMessageDialog(view.getFrame(), model.alterBoxerScores(boxerId, boxerScores));
 
-            }catch(NumberFormatException E){
+            } catch (NumberFormatException E) {
                 JOptionPane.showMessageDialog(view.getFrame(), "Invalid ID provided.");
             }
         });
 
-        view.getViewDetailsCategory().addActionListener(e ->{
+        view.getViewDetailsCategory().addActionListener(e -> {
             Category[] categories = Category.values();
             Category selectedCategory = (Category) JOptionPane.showInputDialog(
                     view.getFrame(),
@@ -305,6 +308,7 @@ public class BoxingController {
         });
 
     }
+
     public void start() {
         SwingUtilities.invokeLater(() -> view.getFrame().setVisible(true));
     }

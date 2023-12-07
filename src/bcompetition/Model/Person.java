@@ -12,13 +12,12 @@ public class Person {
     private String gender;
 
 
-
     public Person(String name, String middleName, String surname, int age, String Country, String gender) {
         Name = name;
         this.middleName = middleName;
         Surname = surname;
         this.Age = age;
-        this.Country =  Country;
+        this.Country = Country;
         this.gender = gender;
     }
 
@@ -38,35 +37,20 @@ public class Person {
         Age = age;
     }
 
+    public String getName() {
+        return Name;
+    }
+
     public void setName(String name) {
         Name = name;
     }
 
-    public void setSurname(String surname) {
-        Surname = surname;
-    }
-
-    public void setCountry(String country) {
-        Country = country;
-    }
-
-    public void setAge(int age) {
-        Age = age;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getName() {
-        return Name;
-    }
     public String getFullName() {
-        if(Objects.equals(middleName, "")){
+        if (Objects.equals(middleName, "")) {
             return Name + " " + Surname;
 
-        }else{
-            return Name +" "+ middleName + " " + Surname;
+        } else {
+            return Name + " " + middleName + " " + Surname;
 
         }
     }
@@ -75,46 +59,64 @@ public class Person {
         return gender;
     }
 
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getMiddleName() {
         return middleName;
     }
 
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
     public String getSurname() {
         return Surname;
+    }
+
+    public void setSurname(String surname) {
+        Surname = surname;
     }
 
     public int getAge() {
         return Age;
     }
 
+    public void setAge(int age) {
+        Age = age;
+    }
+
     public String getCountry() {
         return Country;
     }
-    public String getInitials(){
+
+    public void setCountry(String country) {
+        Country = country;
+    }
+
+    public String getInitials() {
 
         String[] words = getFullName().split(" ");
         String s = "";
 
-        for (String word: words) {
-            if(!(word.equals(""))){
+        for (String word : words) {
+            if (!(word.equals(""))) {
                 s += word.charAt(0);
             }
         }
         return s;
     }
+
     @Override
     public String toString() {
-        return "<Name: " + Name  +
+        return "<Name: " + Name +
                 " - Middle Name: " + middleName +
                 " - Surname: " + Surname +
                 " - Gender: " + gender +
                 " - Country: " + Country +
                 " - Age: " + Age +
-                "> }"+"\n";
+                "> }" + "\n";
     }
 
 }

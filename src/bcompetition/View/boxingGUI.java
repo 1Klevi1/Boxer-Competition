@@ -1,16 +1,7 @@
 package bcompetition.View;
 
-import bcompetition.Model.Category;
-import bcompetition.Model.Level;
-import bcompetition.Model.CompetitorList;
-import bcompetition.Model.KABoxer;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.Arrays;
-import java.util.Comparator;
 
 /**
  * Provides a GUI interface for the game.
