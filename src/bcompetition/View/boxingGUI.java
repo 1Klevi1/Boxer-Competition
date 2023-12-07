@@ -210,40 +210,6 @@ public class boxingGUI {
         menubar.add(Box.createHorizontalStrut(10));
         menubar.setVisible(true);
 
-        editBoxerScore.addActionListener(e ->{
-            try{
-                String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
-                if(userInput == null){
-                    JOptionPane.showMessageDialog(frame, "User canceled the input.");
-                    return;
-                }
-                int boxerId = Integer.parseInt(userInput);
-                if(!(clist.boxerExists(boxerId))){
-                    JOptionPane.showMessageDialog(frame, "Boxer doesn't exist.");
-                    return;
-                }
-                String boxerScore = JOptionPane.showInputDialog("Enter boxer score (comma-separated): ");
-                if(boxerScore == null){
-                    JOptionPane.showMessageDialog(frame, "User canceled the input.");
-                    return;
-                }
-                String[] scoreStrings = boxerScore.split(",");
-                int[] boxerScores = new int[scoreStrings.length];
-                for (int i = 0; i < scoreStrings.length; i++) {
-                    try {
-                        boxerScores[i] = Integer.parseInt(scoreStrings[i].trim());
-                    } catch (NumberFormatException s) {
-                        JOptionPane.showMessageDialog(frame, "Invalid input. Please enter valid integers.");
-                        return;
-                    }
-                }
-                JOptionPane.showMessageDialog(frame, clist.alterBoxerScores(boxerId, boxerScores));
-
-            }catch(NumberFormatException E){
-            JOptionPane.showMessageDialog(frame, "Invalid ID provided.");
-        }
-        });
-
         viewDetailsCategory.addActionListener(e ->{
             Category[] categories = Category.values();
             Category selectedCategory = (Category) JOptionPane.showInputDialog(

@@ -255,6 +255,40 @@ public class BoxingController {
             }
         });
 
+        view.getEditBoxerScore().addActionListener(e ->{
+            try{
+                String userInput = JOptionPane.showInputDialog("Enter boxer Id: ");
+                if(userInput == null){
+                    JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
+                    return;
+                }
+                int boxerId = Integer.parseInt(userInput);
+                if(!(model.boxerExists(boxerId))){
+                    JOptionPane.showMessageDialog(view.getFrame(), "Boxer doesn't exist.");
+                    return;
+                }
+                String boxerScore = JOptionPane.showInputDialog("Enter boxer score (comma-separated): ");
+                if(boxerScore == null){
+                    JOptionPane.showMessageDialog(view.getFrame(), "User canceled the input.");
+                    return;
+                }
+                String[] scoreStrings = boxerScore.split(",");
+                int[] boxerScores = new int[scoreStrings.length];
+                for (int i = 0; i < scoreStrings.length; i++) {
+                    try {
+                        boxerScores[i] = Integer.parseInt(scoreStrings[i].trim());
+                    } catch (NumberFormatException s) {
+                        JOptionPane.showMessageDialog(view.getFrame(), "Invalid input. Please enter valid integers.");
+                        return;
+                    }
+                }
+                JOptionPane.showMessageDialog(view.getFrame(), model.alterBoxerScores(boxerId, boxerScores));
+
+            }catch(NumberFormatException E){
+                JOptionPane.showMessageDialog(view.getFrame(), "Invalid ID provided.");
+            }
+        });
+
     }
 
     public void start() {
