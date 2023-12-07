@@ -1,8 +1,5 @@
 package bcompetition.Model;
 
-import bcompetition.Category;
-import bcompetition.Level;
-
 public class ProfessionalBoxer extends KABoxer {
     private int championshipsWon;
     public ProfessionalBoxer(int competitorId, Person competitorDetails,
@@ -43,7 +40,7 @@ public class ProfessionalBoxer extends KABoxer {
     }
     public String getFullDetails(){
         return
-                "<Professional Boxer { Id: " + getCompetitorId()  + " - Name: "
+                "<"+getCompetitorLvl()+" Boxer {"+" Id: " + getCompetitorId()  + " - Name: "
                         + getCompetitorDetails().getFullName() + ".\n"
                         + getCompetitorDetails().getName() + " has a " + getCompetitorLvl()
                         + " level, is aged " + getCompetitorDetails().getAge()
@@ -55,7 +52,7 @@ public class ProfessionalBoxer extends KABoxer {
     }
 @Override
 public String toString() {
-    return "\n<Professional Boxer {" +
+    return "\n<"+getCompetitorLvl()+" Boxer {" +
             "\n - Id: " + getCompetitorId() +
             "\n - Details { " + getCompetitorDetails() +
             " - Level: " + getCompetitorLvl() +

@@ -1,8 +1,5 @@
 package bcompetition.Model;
 
-import bcompetition.Category;
-import bcompetition.Level;
-
 import java.util.Arrays;
 
 public abstract class KABoxer {
