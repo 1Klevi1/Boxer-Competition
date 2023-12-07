@@ -1,4 +1,4 @@
-package bcompetition;
+package bcompetition.Model;
 
 public enum Category {
     LIGHTWEIGHT("Lightweight"), MIDDLEWEIGHT("Middleweight"), HEAVYWEIGHT("Heavyweight");

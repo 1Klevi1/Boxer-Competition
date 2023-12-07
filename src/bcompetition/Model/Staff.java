@@ -1,7 +1,5 @@
 package bcompetition.Model;
 
-import bcompetition.Category;
-
 import java.util.Arrays;
 
 public class Staff {

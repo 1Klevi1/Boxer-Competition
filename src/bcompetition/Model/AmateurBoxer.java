@@ -1,8 +1,5 @@
 package bcompetition.Model;
 
-import bcompetition.Category;
-import bcompetition.Level;
-
 public class AmateurBoxer extends KABoxer {
     private int amateurRank;
 

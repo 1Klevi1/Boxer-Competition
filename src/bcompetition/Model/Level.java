@@ -1,4 +1,4 @@
-package bcompetition;
+package bcompetition.Model;
 
 public enum Level {
     NOVICE("Novice"), PROFESSIONAL("Professional");
