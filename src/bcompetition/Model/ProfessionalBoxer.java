@@ -9,7 +9,7 @@ public class ProfessionalBoxer extends KABoxer {
     private int championshipsWon;
 
     /**
-     * Constructs a ProfessionalBoxer with specified attributes.
+     * Constructs a ProfessionalBoxerTest with specified attributes.
      *
      * @param competitorId      The unique identifier for the boxer.
      * @param competitorDetails Personal details of the boxer.
@@ -24,7 +24,7 @@ public class ProfessionalBoxer extends KABoxer {
     }
 
     /**
-     * Constructs a ProfessionalBoxer with default values for championships won.
+     * Constructs a ProfessionalBoxerTest with default values for championships won.
      *
      * @param competitorId      The unique identifier for the boxer.
      * @param competitorDetails Personal details of the boxer.
@@ -100,9 +100,9 @@ public class ProfessionalBoxer extends KABoxer {
     }
 
     /**
-     * Returns a string representation of the ProfessionalBoxer.
+     * Returns a string representation of the ProfessionalBoxerTest.
      *
-     * @return A string representation of the ProfessionalBoxer object.
+     * @return A string representation of the ProfessionalBoxerTest object.
      */
     @Override
     public String toString() {
