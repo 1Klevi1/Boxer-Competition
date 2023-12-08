@@ -55,4 +55,45 @@ public class NoviceBoxerTest {
         // Assert
         assertEquals(rank, noviceBoxer.getAmateurRank());
     }
+
+    @Test
+    void getOverallScore_withScores_shouldCalculateCorrectOverallScore() {
+        // Arrange
+        Person competitorDetails = new Person("John", "Doe",
+                "M", "USA",25,"male");
+        Level competitorLvl = Level.NOVICE;
+        Category competitorCategory = Category.HEAVYWEIGHT;
+        NoviceBoxer noviceBoxer = new NoviceBoxer(4, competitorDetails, competitorLvl, competitorCategory);
+        int[] scoresHeavy = {8, 7, 9, 6, 8, 7};
+        int[] scoresMiddle = {6, 5, 7, 5, 6, 5};
+        int[] scoresLight = {9, 8, 10, 7, 9, 8};
+        noviceBoxer.setScoresHeavy(scoresHeavy);
+        noviceBoxer.setScoresMiddle(scoresMiddle);
+        noviceBoxer.setScoresLight(scoresLight);
+
+        // Act
+        double overallScore = noviceBoxer.getOverallScore();
+
+        // Assert
+        assertEquals(7.15, overallScore, 0.001);
+    }
+
+    @Test
+    void toString_shouldReturnStringRepresentation() {
+        // Arrange
+        Person competitorDetails = new Person("Eva", "Davis", "Suarez",
+                "Germany",26, "female" );
+        Level competitorLvl = Level.NOVICE;
+        Category competitorCategory = Category.LIGHTWEIGHT;
+        NoviceBoxer noviceBoxer = new NoviceBoxer(5, competitorDetails,
+                competitorLvl, competitorCategory);
+        noviceBoxer.setAmateurRank(2);
+
+        // Act
+        String stringRepresentation = noviceBoxer.toString();
+
+        // Assert
+        assertTrue(stringRepresentation.contains("Level: " + competitorLvl));
+        assertTrue(stringRepresentation.contains("Amateur rank: 2"));
+    }
 }
