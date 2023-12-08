@@ -403,9 +403,8 @@ public class CompetitorList {
      * Reads competitor data from a file and populates the list of participants.
      *
      * @param fileName The name of the file to read data from.
-     * @return 1 if the operation is successful, -1 if the level is invalid, -2 if the category is missing.
      */
-    public int readAllParticipants(String fileName) {
+    public void readAllParticipants(String fileName) {
         try {
             FileReader filereader = new FileReader(fileName);
             BufferedReader reader = new BufferedReader(filereader);
@@ -444,11 +443,11 @@ public class CompetitorList {
                             boxer = new ProfessionalBoxer(id, person, Level.valueOf(level.toUpperCase()), Category.valueOf(category.toUpperCase()));
                         }
                     } else {
-                        return -2;
+                        return;
                     }
 
                 } else {
-                    return -1;
+                    return;
                 }
 
                 boxer.setScoreArray(Category.valueOf(category.toUpperCase()), scores);
@@ -460,7 +459,6 @@ public class CompetitorList {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return 1;
     }
 
     /**

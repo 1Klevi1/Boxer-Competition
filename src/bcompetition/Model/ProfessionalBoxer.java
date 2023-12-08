@@ -95,7 +95,8 @@ public class ProfessionalBoxer extends KABoxer {
                         + ". The Category is " + getCompetitorCategory()
                         + " and the gender is " + getCompetitorDetails().getGender()
                         + ".\nThe boxer received these scores : " + getAllScores()
-                        + "and has an overall score of " + getOverallScore() + "}>";
+                        + " The boxer is from " + getCompetitorDetails().getCountry()
+                        + " and has an overall score of " + getOverallScore() + "}>";
 
     }
 
