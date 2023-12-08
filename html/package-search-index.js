@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"bcompetition"},{"l":"bcompetition.Controller"},{"l":"bcompetition.Model"},{"l":"bcompetition.View"}];updateSearchResults();
