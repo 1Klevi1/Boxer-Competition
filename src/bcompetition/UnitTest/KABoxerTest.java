@@ -1,17 +1,41 @@
 package bcompetition.UnitTest;
 
+import bcompetition.Model.*;
 import org.junit.Before;
 import org.junit.Test;
-import bcompetition.Model.*;
-import static org.junit.Assert.*;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+
+/**
+ * The {@code KABoxerTest} class contains unit tests for the methods in the {@code KABoxer} class.
+ * It utilizes JUnit 4 testing framework for writing and executing tests.
+ *
+ * <p>These tests cover various functionalities of the {@code KABoxer} class, including:
+ * <ul>
+ *     <li>Setting and getting competitor details, level, and category</li>
+ *     <li>Setting and getting scores for heavyweight, middleweight, and lightweight categories</li>
+ *     <li>Calculating and setting the mean scores for heavyweight, middleweight, and lightweight categories</li>
+ *     <li>Calculating and setting the overall score for a boxer</li>
+ *     <li>Getting short, full, and specific details of a boxer</li>
+ * </ul>
+ *
+ * <p>Each test method is annotated with {@code}{@Test}, and assertions are made using methods from
+ * {@code org.junit.Assert} and {@code org.junit.Assert.assertEquals}.
+ *
+ * <p>It's recommended to run these tests with various test cases and data to ensure the correct
+ * behavior of the {@code KABoxer} class.
+ *
+ * @author Klevi Alliu
+ * @version 08/12/2023
+ */
 public class KABoxerTest {
     private KABoxer testBoxer;
     private Person testPerson;
 
     @Before
     public void setUp() {
-        testPerson = new Person("John", "Doe", "M", "UK", 23,"male");
+        testPerson = new Person("John", "Doe", "M", "UK", 23, "male");
         testBoxer = new NoviceBoxer(1, testPerson, Level.NOVICE, Category.HEAVYWEIGHT);
     }
 
@@ -53,9 +77,10 @@ public class KABoxerTest {
         double overallScore = testBoxer.getOverallScore();
         assertEquals(11.25, overallScore, 0.0001);
     }
+
     @Test
     public void setScoreArray_shouldSetScoresForHeavyCategory() {
-        testPerson = new Person("John", "Doe", "M", "UK", 23,"male");
+        testPerson = new Person("John", "Doe", "M", "UK", 23, "male");
         testBoxer = new NoviceBoxer(1, testPerson, Level.NOVICE, Category.HEAVYWEIGHT);
         int[] scores = {1, 2, 3, 4, 5, 6};
 
@@ -71,7 +96,7 @@ public class KABoxerTest {
     @Test
     public void setScoreArray_shouldSetScoresForMiddleCategory() {
         // Arrange
-        testPerson = new Person("John", "Doe", "M", "UK", 23,"male");
+        testPerson = new Person("John", "Doe", "M", "UK", 23, "male");
         testBoxer = new NoviceBoxer(1, testPerson, Level.NOVICE, Category.HEAVYWEIGHT);
         int[] testScores = {7, 8, 9, 10, 11, 12};
 
@@ -86,7 +111,7 @@ public class KABoxerTest {
 
     @Test
     public void setScoreArray_shouldSetScoresForLightCategory() {
-        testPerson = new Person("John", "Doe", "M", "UK", 23,"male");
+        testPerson = new Person("John", "Doe", "M", "UK", 23, "male");
         testBoxer = new NoviceBoxer(1, testPerson, Level.NOVICE, Category.HEAVYWEIGHT);
         int[] testScores = {13, 14, 15, 16, 17, 18};
 

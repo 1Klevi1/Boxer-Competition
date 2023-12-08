@@ -1,15 +1,43 @@
 package bcompetition.UnitTest;
-import bcompetition.Model.*;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
+import bcompetition.Model.Category;
+import bcompetition.Model.Level;
+import bcompetition.Model.NoviceBoxer;
+import bcompetition.Model.Person;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * The {@code NoviceBoxerTest} class contains unit tests for the methods in the {@code NoviceBoxer} class.
+ * It utilizes JUnit 5 testing framework for writing and executing tests.
+ *
+ * <p>These tests cover various functionalities of the {@code NoviceBoxer} class, including:
+ * <ul>
+ *     <li>Constructing a novice boxer with specified details, level, and category</li>
+ *     <li>Constructing a novice boxer with specified details, level, category, and amateur rank</li>
+ *     <li>Getting and setting the amateur rank of a novice boxer</li>
+ *     <li>Calculating the overall score of a novice boxer based on scores and weights</li>
+ *     <li>Getting a string representation of the full details and general information of a novice boxer</li>
+ * </ul>
+ *
+ * <p>Each test method is annotated with {@code}{@Test}, and assertions are made using methods from
+ * {@code org.junit.jupiter.api.Assertions}.
+ *
+ * <p>It's recommended to run these tests with various test cases and data to ensure the correct
+ * behavior of the {@code NoviceBoxer} class.
+ *
+ * @author Klevi Alliu
+ * @version 08/12/2023
+ */
 public class NoviceBoxerTest {
 
     @Test
     void constructor_withRank_shouldSetAmateurRank() {
         // Arrange
         Person competitorDetails = new Person("John", "Doe",
-                "M", "USA",25,"male");
+                "M", "USA", 25, "male");
         Level competitorLvl = Level.NOVICE;
         Category competitorCategory = Category.HEAVYWEIGHT;
         int rank = 5;
@@ -26,7 +54,7 @@ public class NoviceBoxerTest {
     void constructor_withoutRank_shouldSetDefaultAmateurRank() {
         // Arrange
         Person competitorDetails = new Person("Jane",
-                "Doe", "F", "Canada",22, "female" );
+                "Doe", "F", "Canada", 22, "female");
         Level competitorLvl = Level.NOVICE;
         Category competitorCategory = Category.MIDDLEWEIGHT;
 
@@ -42,7 +70,7 @@ public class NoviceBoxerTest {
     void getAmateurRank_afterSetting_shouldReturnCorrectRank() {
         // Arrange
         Person competitorDetails = new Person("Alice", "Smith", "F",
-                "UK",28,"female" );
+                "UK", 28, "female");
         Level competitorLvl = Level.NOVICE;
         Category competitorCategory = Category.LIGHTWEIGHT;
         NoviceBoxer noviceBoxer = new NoviceBoxer(3, competitorDetails,
@@ -60,7 +88,7 @@ public class NoviceBoxerTest {
     void getOverallScore_withScores_shouldCalculateCorrectOverallScore() {
         // Arrange
         Person competitorDetails = new Person("John", "Doe",
-                "M", "USA",25,"male");
+                "M", "USA", 25, "male");
         Level competitorLvl = Level.NOVICE;
         Category competitorCategory = Category.HEAVYWEIGHT;
         NoviceBoxer noviceBoxer = new NoviceBoxer(4, competitorDetails, competitorLvl, competitorCategory);
@@ -82,7 +110,7 @@ public class NoviceBoxerTest {
     void toString_shouldReturnStringRepresentation() {
         // Arrange
         Person competitorDetails = new Person("Eva", "Davis", "Suarez",
-                "Germany",26, "female" );
+                "Germany", 26, "female");
         Level competitorLvl = Level.NOVICE;
         Category competitorCategory = Category.LIGHTWEIGHT;
         NoviceBoxer noviceBoxer = new NoviceBoxer(5, competitorDetails,

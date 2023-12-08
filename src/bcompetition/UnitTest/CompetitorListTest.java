@@ -4,10 +4,35 @@ import bcompetition.Model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The {@code CompetitorListTest} class contains unit tests for the methods in the {@code CompetitorList} class.
+ * It utilizes JUnit 5 testing framework for writing and executing tests.
+ *
+ * <p>These tests cover various functionalities of the {@code CompetitorList} class, including:
+ * <ul>
+ *     <li>Viewing details of participants in a specific category</li>
+ *     <li>Retrieving the list of all participants</li>
+ *     <li>Altering scores of a boxer with a specified ID</li>
+ *     <li>Retrieving short, full, and specific details of a boxer based on the competitor ID</li>
+ *     <li>Editing details of a boxer based on competitor ID, detail, and input</li>
+ *     <li>Calculating totals, averages, maximum, minimum, and frequency of scores for a given boxer</li>
+ *     <li>Reading competitor data from a file and populating the list of participants</li>
+ * </ul>
+ *
+ * <p>Each test method is annotated with {@code}{@Test}, and assertions are made using methods from
+ * {@code org.junit.jupiter.api.Assertions}.
+ *
+ * <p>Before each test method, setup is performed with the help of {@code}{@BeforeEach} to ensure a clean
+ * state for each test.
+ *
+ * <p>It's recommended to run these tests with various test cases and data to ensure the correct
+ * behavior of the {@code CompetitorList} class.
+ *
+ * @author Klevi Alliu
+ * @version 08/12/2023
+ */
 public class CompetitorListTest {
     private CompetitorList competitorList;
 
@@ -44,13 +69,14 @@ public class CompetitorListTest {
         assertEquals("Boxer removed successfully", result);
         assertEquals(initialSize - 1, competitorList.getAllParticipants().size());
     }
+
     @Test
     void viewDetailsCategory_shouldReturnCorrectStringRepresentation() {
         // Arrange
         competitorList.getAllParticipants().clear(); // Clear existing participants
         competitorList.getAllParticipants().add(new NoviceBoxer(1, new
-                Person("John", "Doe", "M", "USA", 23, "MALE"), Level.NOVICE,
-                Category.HEAVYWEIGHT, 1));
+                Person("John", "Doe", "M", "USA", 23, "MALE"),
+                Level.NOVICE, Category.HEAVYWEIGHT, 1));
         competitorList.getAllParticipants().add(new NoviceBoxer(2, new Person
                 ("Alice", "Smith", "F", "Canada", 22, "female"),
                 Level.NOVICE, Category.LIGHTWEIGHT, 2));
@@ -68,8 +94,8 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear(); // Clear existing participants
         competitorList.getAllParticipants().add(new NoviceBoxer(1, new
-                Person("John", "Doe", "M", "USA", 23, "MALE"), Level.NOVICE,
-                Category.HEAVYWEIGHT, 1));
+                Person("John", "Doe", "M", "USA", 23, "MALE"),
+                Level.NOVICE, Category.HEAVYWEIGHT, 1));
         competitorList.getAllParticipants().add(new NoviceBoxer(2, new Person
                 ("Alice", "Smith", "F", "Canada", 22, "female"),
                 Level.NOVICE, Category.LIGHTWEIGHT, 2));
@@ -86,7 +112,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear(); // Clear existing participants
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -102,12 +128,13 @@ public class CompetitorListTest {
         assertEquals(newScores[4], boxer.getScoresHeavy()[4]);
         assertEquals(newScores[5], boxer.getScoresHeavy()[5]);
     }
+
     @Test
     void getCompetitorShortDetails_shouldReturnCorrectShortDetails() {
         // Arrange
         competitorList.getAllParticipants().clear(); // Clear existing participants
-        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "Subaru",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe",
+                "Subaru", "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -122,7 +149,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear(); // Clear existing participants
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -137,7 +164,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear(); // Clear existing participants
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -152,7 +179,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear(); // Clear existing participants
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -161,12 +188,13 @@ public class CompetitorListTest {
         // Assert
         assertTrue(result.contains("John Doe"));
     }
+
     @Test
     void editBoxerDetails_shouldEditNameCorrectly() {
         // Arrange
         competitorList.getAllParticipants().clear(); // Clear existing participants
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -181,7 +209,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear(); // Clear existing participants
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -190,12 +218,13 @@ public class CompetitorListTest {
         // Assert
         assertEquals("Invalid input", result);
     }
+
     @Test
     void editBoxerDetails_shouldEditMiddleNameCorrectly() {
         // Arrange
         competitorList.getAllParticipants().clear();
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -210,7 +239,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear();
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -225,7 +254,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear();
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -240,7 +269,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear();
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -255,11 +284,11 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear();
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
-        String result = competitorList.editBoxerDetails(1, "Country", "Canada");
+        competitorList.editBoxerDetails(1, "Country", "Canada");
         // Assert
         assertTrue(boxer.toString().contains("Canada"));
     }
@@ -269,7 +298,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear();
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -283,8 +312,9 @@ public class CompetitorListTest {
     void editBoxerDetails_shouldEditAgeCorrectly() {
         // Arrange
         competitorList.getAllParticipants().clear();
-        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe",
+                "M",
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -298,8 +328,9 @@ public class CompetitorListTest {
     void editBoxerDetails_shouldReturnInvalidInputForInvalidAge() {
         // Arrange
         competitorList.getAllParticipants().clear();
-        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe",
+                "M",
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -313,8 +344,9 @@ public class CompetitorListTest {
     void editBoxerDetails_shouldEditGenderCorrectly() {
         // Arrange
         competitorList.getAllParticipants().clear();
-        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe",
+                "M",
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -328,8 +360,9 @@ public class CompetitorListTest {
     void editBoxerDetails_shouldReturnInvalidInputForInvalidGender() {
         // Arrange
         competitorList.getAllParticipants().clear();
-        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe",
+                "M",
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -343,8 +376,8 @@ public class CompetitorListTest {
     void editBoxerDetails_shouldEditCompetitorLevelCorrectly() {
         // Arrange
         competitorList.getAllParticipants().clear();
-        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe",
+                "M", "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -358,8 +391,8 @@ public class CompetitorListTest {
     void editBoxerDetails_shouldEditCompetitorCategoryCorrectly() {
         // Arrange
         competitorList.getAllParticipants().clear();
-        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe",
+                "M", "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
@@ -373,12 +406,14 @@ public class CompetitorListTest {
     void editBoxerDetails_shouldEditScoresHeavyCorrectly() {
         // Arrange
         competitorList.getAllParticipants().clear();
-        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+        NoviceBoxer boxer = new NoviceBoxer(1, new Person("John",
+                "Doe", "M", "Uk", 23, "male"), Level.NOVICE,
+                Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
-        String result = competitorList.editBoxerDetails(1, "Scores Heavy (comma-separated)", "90, 80, 70, 60, 50, 40");
+        String result = competitorList.editBoxerDetails(1, "Scores Heavy (comma-separated)",
+                "90, 80, 70, 60, 50, 40");
 
         // Assert
         assertTrue(result.contains("90, 80, 70, 60, 50, 40"));
@@ -389,11 +424,12 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear();
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         competitorList.getAllParticipants().add(boxer);
 
         // Act
-        String result = competitorList.editBoxerDetails(1, "Scores Heavy (comma-separated)", "90, 80, invalid, 60, 50, 40");
+        String result = competitorList.editBoxerDetails(1, "Scores Heavy (comma-separated)",
+                "90, 80, invalid, 60, 50, 40");
 
         // Assert
         assertEquals("Invalid input. Please enter valid integers.", result);
@@ -404,7 +440,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear();
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         boxer.setScoreArray(Category.HEAVYWEIGHT, new int[]{10, 20, 30, 40, 50, 60});
 
         // Act
@@ -419,7 +455,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear();
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         boxer.setScoreArray(Category.HEAVYWEIGHT, new int[]{10, 20, 30, 40, 50, 60});
 
         // Act
@@ -434,7 +470,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear();
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         boxer.setScoreArray(Category.HEAVYWEIGHT, new int[]{10, 20, 30, 40, 50, 60});
 
         // Act
@@ -449,7 +485,7 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear();
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
         boxer.setScoreArray(Category.HEAVYWEIGHT, new int[]{10, 20, 30, 40, 50, 60});
 
         // Act
@@ -464,8 +500,8 @@ public class CompetitorListTest {
         // Arrange
         competitorList.getAllParticipants().clear();
         NoviceBoxer boxer = new NoviceBoxer(1, new Person("John", "Doe", "M",
-                "Uk", 23,"male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
-        boxer.setScoreArray(Category.HEAVYWEIGHT, new int[]{1,1,2,2,3,3});
+                "Uk", 23, "male"), Level.NOVICE, Category.HEAVYWEIGHT, 1);
+        boxer.setScoreArray(Category.HEAVYWEIGHT, new int[]{1, 1, 2, 2, 3, 3});
 
         // Act
         String result = competitorList.calcFrequency(boxer);
