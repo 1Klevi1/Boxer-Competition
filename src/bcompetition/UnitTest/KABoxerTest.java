@@ -53,4 +53,49 @@ public class KABoxerTest {
         double overallScore = testBoxer.getOverallScore();
         assertEquals(11.25, overallScore, 0.0001);
     }
+    @Test
+    public void setScoreArray_shouldSetScoresForHeavyCategory() {
+        testPerson = new Person("John", "Doe", "M", "UK", 23,"male");
+        testBoxer = new NoviceBoxer(1, testPerson, Level.NOVICE, Category.HEAVYWEIGHT);
+        int[] scores = {1, 2, 3, 4, 5, 6};
+
+        // Act
+        testBoxer.setScoreArray(Category.HEAVYWEIGHT, scores);
+
+        // Assert
+        assertArrayEquals(scores, testBoxer.getScoresHeavy());
+        assertArrayEquals(new int[6], testBoxer.getScoresMiddle()); // Ensure other categories are not affected
+        assertArrayEquals(new int[6], testBoxer.getScoresLight());
+    }
+
+    @Test
+    public void setScoreArray_shouldSetScoresForMiddleCategory() {
+        // Arrange
+        testPerson = new Person("John", "Doe", "M", "UK", 23,"male");
+        testBoxer = new NoviceBoxer(1, testPerson, Level.NOVICE, Category.HEAVYWEIGHT);
+        int[] testScores = {7, 8, 9, 10, 11, 12};
+
+        // Act
+        testBoxer.setScoreArray(Category.MIDDLEWEIGHT, testScores);
+
+        // Assert
+        assertArrayEquals(testScores, testBoxer.getScoresMiddle());
+        assertArrayEquals(new int[6], testBoxer.getScoresHeavy()); // Ensure other categories are not affected
+        assertArrayEquals(new int[6], testBoxer.getScoresLight());
+    }
+
+    @Test
+    public void setScoreArray_shouldSetScoresForLightCategory() {
+        testPerson = new Person("John", "Doe", "M", "UK", 23,"male");
+        testBoxer = new NoviceBoxer(1, testPerson, Level.NOVICE, Category.HEAVYWEIGHT);
+        int[] testScores = {13, 14, 15, 16, 17, 18};
+
+        // Act
+        testBoxer.setScoreArray(Category.LIGHTWEIGHT, testScores);
+
+        // Assert
+        assertArrayEquals(testScores, testBoxer.getScoresLight());
+        assertArrayEquals(new int[6], testBoxer.getScoresHeavy()); // Ensure other categories are not affected
+        assertArrayEquals(new int[6], testBoxer.getScoresMiddle());
+    }
 }
